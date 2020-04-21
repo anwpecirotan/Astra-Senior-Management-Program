@@ -2808,6 +2808,62 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &213316560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213316562}
+  - component: {fileID: 213316561}
+  m_Layer: 0
+  m_Name: ValueCreationInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &213316561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213316560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6a610ffbe47834b98af096981322c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SalesGrowthRateSlider: {fileID: 1176404654}
+  OperatingProfitMarginSlider: {fileID: 1208373179}
+  CashTaxRateSlider: {fileID: 1097712882}
+  IncrementalFixedCapitalInvestmentSlider: {fileID: 125172711}
+  IncrementalWorkingCapitalInvestmentSlider: {fileID: 2116568033}
+  CostofCapitalSlider: {fileID: 1137378566}
+  PlanningPeriod_YearsSlider: {fileID: 1760923891}
+  SalesGrowthRateText: {fileID: 679903555}
+  OperatingProfitMarginText: {fileID: 1889258676}
+  CashTaxRateText: {fileID: 1721395469}
+  IncrementalFixedCapitalInvestmentText: {fileID: 1485385012}
+  IncrementalWorkingCapitalInvestmentText: {fileID: 1621901497}
+  CostofCapitalText: {fileID: 1461464523}
+--- !u!4 &213316562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213316560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8239714, y: 0.35045952, z: 118.39258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213615801
 GameObject:
   m_ObjectHideFlags: 0
