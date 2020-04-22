@@ -29,13 +29,6 @@ public class ValueCreationInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ValueDrivers.SalesGrowthRate = SalesGrowthRateSlider.value;
-        ValueDrivers.OperatingProfitMargin = OperatingProfitMarginSlider.value;
-        ValueDrivers.CashTaxRate = CashTaxRateSlider.value;
-        ValueDrivers.IncrementalFixedCapitalInvestment = IncrementalFixedCapitalInvestmentSlider.value;
-        ValueDrivers.IncrementalWorkingCapitalInvestment = IncrementalWorkingCapitalInvestmentSlider.value;
-        ValueDrivers.CostofCapital = CostofCapitalSlider.value;
-        ValueDrivers.PlanningPeriod_Years = PlanningPeriod_YearsSlider.value;
 
         SalesGrowthRateText.text =Mathf.Round(SalesGrowthRateSlider.value *100) + " %";
         OperatingProfitMarginText.text = Mathf.Round(OperatingProfitMarginSlider.value * 100)  + " %";
@@ -43,5 +36,16 @@ public class ValueCreationInput : MonoBehaviour
         IncrementalFixedCapitalInvestmentText.text = Mathf.Round(IncrementalFixedCapitalInvestmentSlider.value * 100)  + " %";
         IncrementalWorkingCapitalInvestmentText.text = Mathf.Round(IncrementalWorkingCapitalInvestmentSlider.value * 100)  + " %";
         CostofCapitalText.text = Mathf.Round(CostofCapitalSlider.value * 100) + " %";
+    }
+
+    public void Submit()
+    {
+        ValueDrivers.SalesGrowthRate = SalesGrowthRateSlider.value;
+        ValueDrivers.OperatingProfitMargin = OperatingProfitMarginSlider.value;
+        ValueDrivers.CashTaxRate = CashTaxRateSlider.value;
+        ValueDrivers.IncrementalFixedCapitalInvestment = IncrementalFixedCapitalInvestmentSlider.value;
+        ValueDrivers.IncrementalWorkingCapitalInvestment = IncrementalWorkingCapitalInvestmentSlider.value;
+        ValueDrivers.CostofCapital = CostofCapitalSlider.value;
+        ValueDrivers.PlanningPeriod_Years = PlanningPeriod_YearsSlider.value;
     }
 }

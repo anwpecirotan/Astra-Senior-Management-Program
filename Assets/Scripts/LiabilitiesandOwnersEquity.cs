@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LiabilitiesandOwnersEquity : MonoBehaviour
 {
@@ -9,10 +10,10 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
     public class CurrentAssets
     {
         public static int Cash = 170;
-        public int AccountsReceivable = 2820;
-        public int Inventory = 4000;
+        public static int AccountsReceivable = 2820;
+        public static int Inventory = 4000;
         public static int MiscellaneousCA = 510;
-        public static int ToCurrentAssets = Cash + MiscellaneousCA;
+        public static int ToCurrentAssets = Cash + MiscellaneousCA + AccountsReceivable + Inventory;
         public static int FixedAssets_NotFA = 2500;
     }
 
@@ -60,10 +61,16 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
         public static int RE_RetainedEarnings = EAT_EarningsAfterTax - Dividend;
     }
 
-
+    public TextMeshProUGUI CashText, AccountsReceivableText, InventoryText, MiscellaneousCAText, ToCurrentAssetsText;
+    
     void Start()
     {
-        
+        CashText.text = CurrentAssets.Cash + "$";
+        AccountsReceivableText.text = CurrentAssets.AccountsReceivable + "$";
+        InventoryText.text = CurrentAssets.Inventory + "$";
+        MiscellaneousCAText.text = CurrentAssets.MiscellaneousCA + "$";
+        ToCurrentAssetsText.text = CurrentAssets.ToCurrentAssets + "$";
+
     }
 
     void Update()
