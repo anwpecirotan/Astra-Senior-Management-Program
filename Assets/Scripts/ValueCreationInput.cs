@@ -12,7 +12,7 @@ public class ValueCreationInput : MonoBehaviour
     public Slider IncrementalFixedCapitalInvestmentSlider;
     public Slider IncrementalWorkingCapitalInvestmentSlider;
     public Slider CostofCapitalSlider;
-    public Dropdown PlanningPeriod_YearsSlider;
+    public TMP_InputField PlanningPeriod_YearsSlider;
 
     public TextMeshProUGUI SalesGrowthRateText;
     public TextMeshProUGUI OperatingProfitMarginText;
@@ -46,6 +46,6 @@ public class ValueCreationInput : MonoBehaviour
         ValueDrivers.IncrementalFixedCapitalInvestment = IncrementalFixedCapitalInvestmentSlider.value;
         ValueDrivers.IncrementalWorkingCapitalInvestment = IncrementalWorkingCapitalInvestmentSlider.value;
         ValueDrivers.CostofCapital = CostofCapitalSlider.value;
-        ValueDrivers.PlanningPeriod_Years = PlanningPeriod_YearsSlider.value;
+        ValueDrivers.PlanningPeriod_Years = int.Parse(PlanningPeriod_YearsSlider.text);
     }
 }

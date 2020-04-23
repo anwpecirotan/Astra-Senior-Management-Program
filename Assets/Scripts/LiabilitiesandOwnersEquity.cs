@@ -7,7 +7,7 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
 {
     //BALANCE SHEET
 
-    public class CurrentAssets
+    public static class CurrentAssets
     {
         public static int Cash = 170;
         public static int AccountsReceivable = 2820;
@@ -17,35 +17,35 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
         public static int FixedAssets_NotFA = 2500;
     }
 
-    public class TotalAssets
+    public static class TotalAssets
     {
-        public int totalAssets = CurrentAssets.ToCurrentAssets + CurrentAssets.FixedAssets_NotFA;
+        public static int totalAssets = CurrentAssets.ToCurrentAssets + CurrentAssets.FixedAssets_NotFA;
     }
 
-    public class CurrentLiabilities_LessShorttermLoans
+    public static class CurrentLiabilities_LessShorttermLoans
     {
         public static int AccountsPayables = 2750;
         public static int MiscellaneousCL = 500;
         public static int TotalCL = AccountsPayables + MiscellaneousCL; 
     }
 
-    public class Borrowing
+    public static class Borrowing
     {
         public static int Short_termLoans = 1000;
         public static int Long_termLoans = 1544;
         public static int TotalBorr = Short_termLoans + Long_termLoans;
     }
 
-    public class OwnersEquity
+    public static class OwnersEquity
     {
         public static int IssuedCapital = 1980;
         public static int RetainedEarnings = 2226;
         public static int TotalOE = IssuedCapital + RetainedEarnings;
     }
 
-    public class TotalLiabilitiesandOwnersEquity
+    public static class TotalLiabilitiesandOwnersEquity
     {
-        public int TotalLOE = CurrentLiabilities_LessShorttermLoans.TotalCL + Borrowing.TotalBorr + OwnersEquity.TotalOE;
+        public static int TotalLOE = CurrentLiabilities_LessShorttermLoans.TotalCL + Borrowing.TotalBorr + OwnersEquity.TotalOE;
     }
 
     public class ProfitandLossStatement
@@ -62,7 +62,16 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
     }
 
     public TextMeshProUGUI CashText, AccountsReceivableText, InventoryText, MiscellaneousCAText, ToCurrentAssetsText;
-    
+    public TextMeshProUGUI FixedAssets_NotFAText, totalAssetsText;
+    public TextMeshProUGUI AccountsPayablesText, MiscellaneousCLText, TotalCLText;
+    public TextMeshProUGUI Short_termLoansText, Long_termLoansText, TotalBorrText;
+    public TextMeshProUGUI IssuedCapitalText, RetainedEarningsText, TotalOEText;
+    public TextMeshProUGUI TotalLOEText;
+
+    public TextMeshProUGUI SalesText, OperatingExpensesText, EBIT_EarningsBeforeInterestandTaxText, InterestText;
+    public TextMeshProUGUI EBT_EarningsBeforeTaxText, TaxText, EAT_EarningsAfterTaxText, DividendText, RE_RetainedEarningsText;
+
+
     void Start()
     {
         CashText.text = CurrentAssets.Cash + "$";
@@ -71,6 +80,33 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
         MiscellaneousCAText.text = CurrentAssets.MiscellaneousCA + "$";
         ToCurrentAssetsText.text = CurrentAssets.ToCurrentAssets + "$";
 
+        FixedAssets_NotFAText.text = CurrentAssets.FixedAssets_NotFA + "$";
+        totalAssetsText.text = TotalAssets.totalAssets + "$";
+
+        AccountsPayablesText.text = CurrentLiabilities_LessShorttermLoans.AccountsPayables + "$";
+        MiscellaneousCLText.text = CurrentLiabilities_LessShorttermLoans.MiscellaneousCL + "$";
+        TotalCLText.text = CurrentLiabilities_LessShorttermLoans.TotalCL + "$";
+
+        Short_termLoansText.text = Borrowing.Short_termLoans + "$";
+        Long_termLoansText.text = Borrowing.Long_termLoans + "$";
+        TotalBorrText.text = Borrowing.TotalBorr + "$";
+
+        IssuedCapitalText.text = OwnersEquity.IssuedCapital + "$";
+        RetainedEarningsText.text = OwnersEquity.RetainedEarnings + "$";
+        TotalOEText.text = OwnersEquity.TotalOE + "$";
+
+        TotalLOEText.text = TotalLiabilitiesandOwnersEquity.TotalLOE + "$";
+
+        SalesText.text = ProfitandLossStatement.Sales + "$";
+        OperatingExpensesText.text = ProfitandLossStatement.OperatingExpenses + "$";
+        EBIT_EarningsBeforeInterestandTaxText.text = ProfitandLossStatement.EBIT_EarningsBeforeInterestandTax + "$";
+        InterestText.text = ProfitandLossStatement.Interest + "$";
+        EBT_EarningsBeforeTaxText.text = ProfitandLossStatement.EBT_EarningsBeforeTax + "$";
+        TaxText.text = ProfitandLossStatement.Tax + "$";
+        EAT_EarningsAfterTaxText.text = ProfitandLossStatement.EAT_EarningsAfterTax + "$";
+        DividendText.text = ProfitandLossStatement.Dividend + "$";
+        RE_RetainedEarningsText.text = ProfitandLossStatement.RE_RetainedEarnings + "$";
+        
     }
 
     void Update()
