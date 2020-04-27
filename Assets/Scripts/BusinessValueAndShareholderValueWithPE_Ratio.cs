@@ -7,8 +7,9 @@ public class BusinessValueAndShareholderValuesWithPE_Ratio : MonoBehaviour
     public class ShareholdersValueAddedBasedOnMultiples
     {
         public static double PE_Ratio = 8;
-        public static double PVofContinuingValue = OperatingCashFlowsForecasts.Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear5 *
-                                                   PE_Ratio;
+        //public static double PVofContinuingValue = OperatingCashFlowsForecasts.Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear5 *
+        //                                           PE_Ratio;
+        public static double PVofContinuingValue = 0;
     }
 
     public static double CummulativePVofNetCashFlows = OperatingCashFlowsForecasts.NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures;
