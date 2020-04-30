@@ -16,7 +16,7 @@ public class WACC : MonoBehaviour
             public static int dollarSL = LiabilitiesandOwnersEquity.Borrowing.Short_termLoans;
             public static double Weights = ((double)dollarSL / (LiabilitiesandOwnersEquity.Borrowing.TotalBorr + LiabilitiesandOwnersEquity.OwnersEquity.TotalOE))* 100;
             public static double Cost = 0.09 * 100;
-            public static double AfterTaxCost = Cost * (100 - 25)/100;
+            public static double AfterTaxCost = Cost * (100 - ValueDrivers.CashTaxRate *100)/100;
             public static double WeightedCost = AfterTaxCost * Weights/100;
         }
 
@@ -25,7 +25,7 @@ public class WACC : MonoBehaviour
             public static int dollarLL = LiabilitiesandOwnersEquity.Borrowing.Long_termLoans;
             public static double Weights = ((double)dollarLL / (LiabilitiesandOwnersEquity.Borrowing.TotalBorr + LiabilitiesandOwnersEquity.OwnersEquity.TotalOE)) * 100;
             public static double Cost = 0.1 * 100;
-            public static double AfterTaxCost = Cost * (100 - 25)/100;
+            public static double AfterTaxCost = Cost * (100 - ValueDrivers.CashTaxRate * 100) /100;
             public static double WeightedCost = AfterTaxCost * Weights / 100;
         }
 
@@ -34,7 +34,7 @@ public class WACC : MonoBehaviour
             public static int dollarOE = LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
             public static double Weights = ((double)dollarOE / (LiabilitiesandOwnersEquity.Borrowing.TotalBorr + LiabilitiesandOwnersEquity.OwnersEquity.TotalOE)) *100;
             public static double Cost = 0.12 * 100;
-            public static double AfterTaxCost = Cost * (100 - 25)/100;
+            public static double AfterTaxCost = Cost * (100 - ValueDrivers.CashTaxRate * 100) /100;
             public static double WeightedCost = AfterTaxCost * Weights / 100;
         }
 
@@ -54,10 +54,10 @@ public class WACC : MonoBehaviour
     void Start()
     {
         dollarSLText.text = Funds.ShorttermLoans.dollarSL + "$";
-        WeightsSLText.text = System.Math.Round(Funds.ShorttermLoans.Weights,2) + "%";
-        CostSLText.text = System.Math.Round(Funds.ShorttermLoans.Cost,2) + "%";
-        AfterTaxCostSLText.text = System.Math.Round(Funds.ShorttermLoans.AfterTaxCost,2) + "%";
-        WeightedCostSLText.text = System.Math.Round(Funds.ShorttermLoans.WeightedCost,2) + "%";
+        WeightsSLText.text = System.Math.Round(Funds.ShorttermLoans.Weights, 2) + "%";
+        CostSLText.text = System.Math.Round(Funds.ShorttermLoans.Cost, 2) + "%";
+        AfterTaxCostSLText.text = System.Math.Round(Funds.ShorttermLoans.AfterTaxCost, 2) + "%";
+        WeightedCostSLText.text = System.Math.Round(Funds.ShorttermLoans.WeightedCost, 2) + "%";
 
         dollarLLText.text = Funds.LongtermLoans.dollarLL + "$";
         WeightsLLText.text = System.Math.Round(Funds.LongtermLoans.Weights, 2) + "%";

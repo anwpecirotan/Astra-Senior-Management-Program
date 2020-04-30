@@ -36,6 +36,7 @@ public class ValueCreationInput : MonoBehaviour
         IncrementalFixedCapitalInvestmentText.text = Mathf.Round(IncrementalFixedCapitalInvestmentSlider.value * 100)  + " %";
         IncrementalWorkingCapitalInvestmentText.text = Mathf.Round(IncrementalWorkingCapitalInvestmentSlider.value * 100)  + " %";
         CostofCapitalText.text = Mathf.Round(CostofCapitalSlider.value * 100) + " %";
+
     }
 
     public void Submit()

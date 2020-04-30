@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class OperatingCashFlowsForecasts : MonoBehaviour
 {
@@ -168,9 +169,13 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
     private int FirstNWCBalance, FirstNWCCashFlow, FirstContinueNOPAT;
     private double FirstPresentValueCashFlow, FirstPresentValue, FirstFreeCashFlow, FirstContinuingValue;
 
+    public GameObject ForecastPeriodYear,content,changeable;
+
     void Start()
     {
         AssignBaseText();
+        AssignFirstValue();
+        AssignPeriodForecast();
     }
 
     void Update()
@@ -187,7 +192,6 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         FirstCIBalance = (int)CapitalInvestments_FixedAssets.Balance.ForecastPeriodYear1;
         FirstCICashFlow = (int)CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1;
         FirstNWCBalance = (int)NetWorkingCapitalInvestments.Balance.ForecastPeriodYear1;
-        FirstNWCCashFlow = (int)NetWorkingCapitalInvestments.CashFlows.ForecastPeriodYear1;
         FirstNWCCashFlow = (int)NetWorkingCapitalInvestments.CashFlows.ForecastPeriodYear1;
         FirstFreeCashFlow = NetCashFlows_FreeCashFlows.ForecastPeriodYear1;
         FirstPresentValue = NetCashFlows_FreeCashFlows.PresentValueFactor.ForecastPeriodYear1;
@@ -206,5 +210,29 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         BaseCumulativeNCFText.text = System.Math.Round(NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures * 100, 2) + "%";
         BaseContinuingValueText.text = System.Math.Round(NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures * 100, 2) + "%";
         BasePVContinuingText.text = NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures + "$";
+    }
+
+    private void AssignPeriodForecast()
+    {
+        for(int x = 1; x <= ValueDrivers.PlanningPeriod_Years; x++ )
+        {
+            GameObject PeriodForecast = Instantiate(ForecastPeriodYear, changeable.transform);
+            PeriodForecast.transform.localPosition = new Vector2(80 * x, 0);
+            YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
+            data.YearNumText.text = x.ToString();
+            data.SalesText.text = FirstSales + "$";
+            data.OperatingProfitText.text = FirstOperatingProfit + "$";
+            data.TaxText.text = FirstTax + "$";
+            data.NOPATText.text = FirstNOPAT + "$";
+            data.CIBalanceText.text = FirstCIBalance + "$";
+            data.CICashFlowText.text = FirstCICashFlow + "$";
+            data.NWCBalanceText.text = FirstNWCBalance + "$";
+            data.NWCCashFlowText.text = FirstNWCCashFlow + "$";
+            data.NCFText.text = FirstFreeCashFlow + "$";
+            data.PresentValueText.text = FirstPresentValue + "$";
+            data.CICashFlowOfNCFText.text = FirstPresentValueCashFlow + "$";
+            data.ContinuingNOPATText.text = FirstContinueNOPAT + "$";
+            data.ContinuingValueText.text = FirstContinuingValue + "$";
+        }
     }
 }
