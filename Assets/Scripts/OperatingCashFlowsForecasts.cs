@@ -11,7 +11,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         public class Sales
         {
             public static double BaseFigures = LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales;
-            public static double ForecastPeriodYear1 = BaseFigures * (1 + (ValueDrivers.SalesGrowthRate * 100));
+            public static double ForecastPeriodYear1 = BaseFigures * (1 + (ValueDrivers.SalesGrowthRate));
             //public static double ForecastPeriodYear2 = ForecastPeriodYear1 * (1 + (ValueDrivers.SalesGrowthRate * 100));
             //public static double ForecastPeriodYear3 = ForecastPeriodYear2 * (1 + (ValueDrivers.SalesGrowthRate * 100));
             //public static double ForecastPeriodYear4 = ForecastPeriodYear3 * (1 + (ValueDrivers.SalesGrowthRate * 100));
@@ -61,7 +61,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         public class CashFlows
         {
-            public static double ForecastPeriodYear1 = Balance.BaseFigures - Balance.ForecastPeriodYear1;
+            public static double ForecastPeriodYear1 = Balance.ForecastPeriodYear1 - Balance.BaseFigures ;
             //public static double ForecastPeriodYear2 = Balance.ForecastPeriodYear1 - Balance.ForecastPeriodYear2;
             //public static double ForecastPeriodYear3 = Balance.ForecastPeriodYear2 - Balance.ForecastPeriodYear3;
             //public static double ForecastPeriodYear4 = Balance.ForecastPeriodYear3 - Balance.ForecastPeriodYear4;
@@ -83,7 +83,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         public class CashFlows
         {
-            public static double ForecastPeriodYear1 = Balance.BaseFigures - Balance.ForecastPeriodYear1;
+            public static double ForecastPeriodYear1 = Balance.ForecastPeriodYear1 - Balance.BaseFigures;
             //public static double ForecastPeriodYear2 = Balance.ForecastPeriodYear1 - Balance.ForecastPeriodYear2;
             //public static double ForecastPeriodYear3 = Balance.ForecastPeriodYear2 - Balance.ForecastPeriodYear3;
             //public static double ForecastPeriodYear4 = Balance.ForecastPeriodYear3 - Balance.ForecastPeriodYear4;
@@ -111,7 +111,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         public class PresentValueFactor
         {
-            public static double BaseFigures = WACC.Funds.WACCTotal.TotalWeightedCost;
+            public static double BaseFigures = ValueDrivers.CostofCapital;
             public static double ForecastPeriodYear1 = 1 / (1 + BaseFigures);
             //public static double ForecastPeriodYear2 = ForecastPeriodYear1 / (1 + BaseFigures);
             //public static double ForecastPeriodYear3 = ForecastPeriodYear2 / (1 + BaseFigures);
@@ -168,6 +168,8 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
     private int FirstSales, FirstOperatingProfit, FirstTax, FirstNOPAT, FirstCIBalance, FirstCICashFlow;
     private int FirstNWCBalance, FirstNWCCashFlow, FirstContinueNOPAT;
     private double FirstPresentValueCashFlow, FirstPresentValue, FirstFreeCashFlow, FirstContinuingValue;
+    public static double BaseCumulativeNCF;
+    public static int EndPeriodNOPAT;
 
     public GameObject ForecastPeriodYear,content,changeable;
 
@@ -202,37 +204,65 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
     private void AssignBaseText()
     {
-        BaseSalesText.text = Operations.Sales.BaseFigures + "$";
-        BaseOperatingProfitText.text = Operations.OperatingProfitMargin.BaseFigures + "$";
-        BaseCIBalanceText.text = CapitalInvestments_FixedAssets.Balance.BaseFigures + "$";
-        BaseNWCBalanceText.text = NetWorkingCapitalInvestments.Balance.BaseFigures + "$";
+        BaseSalesText.text = (int)Operations.Sales.BaseFigures + "$";
+        BaseOperatingProfitText.text = (int)Operations.OperatingProfitMargin.BaseFigures + "$";
+        BaseCIBalanceText.text = (int)CapitalInvestments_FixedAssets.Balance.BaseFigures + "$";
+        BaseNWCBalanceText.text = (int)NetWorkingCapitalInvestments.Balance.BaseFigures + "$";
         BasePresentValueText.text = System.Math.Round( NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures *100,2) + "%";
-        BaseCumulativeNCFText.text = System.Math.Round(NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures * 100, 2) + "%";
+        BaseCumulativeNCFText.text = System.Math.Round(NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures , 2) + "%";
         BaseContinuingValueText.text = System.Math.Round(NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures * 100, 2) + "%";
-        BasePVContinuingText.text = NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures + "$";
+        BasePVContinuingText.text = (int)NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures + "$";
     }
 
     private void AssignPeriodForecast()
     {
-        for(int x = 1; x <= ValueDrivers.PlanningPeriod_Years; x++ )
+        BaseCumulativeNCF = NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures;
+        for (int x = 1; x <= ValueDrivers.PlanningPeriod_Years; x++ )
         {
+            if (x == ValueDrivers.PlanningPeriod_Years)
+            {
+                BaseCumulativeNCFText.text = System.Math.Round(BaseCumulativeNCF, 2) + "$";
+                BasePVContinuingText.text = (int)(FirstPresentValue * FirstContinuingValue) + "$";
+                NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures = FirstPresentValue * FirstContinuingValue;
+                EndPeriodNOPAT = FirstNOPAT;
+            }
             GameObject PeriodForecast = Instantiate(ForecastPeriodYear, changeable.transform);
             PeriodForecast.transform.localPosition = new Vector2(80 * x, 0);
             YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
             data.YearNumText.text = x.ToString();
-            data.SalesText.text = FirstSales + "$";
-            data.OperatingProfitText.text = FirstOperatingProfit + "$";
-            data.TaxText.text = FirstTax + "$";
-            data.NOPATText.text = FirstNOPAT + "$";
-            data.CIBalanceText.text = FirstCIBalance + "$";
-            data.CICashFlowText.text = FirstCICashFlow + "$";
-            data.NWCBalanceText.text = FirstNWCBalance + "$";
-            data.NWCCashFlowText.text = FirstNWCCashFlow + "$";
-            data.NCFText.text = FirstFreeCashFlow + "$";
-            data.PresentValueText.text = FirstPresentValue + "$";
-            data.CICashFlowOfNCFText.text = FirstPresentValueCashFlow + "$";
-            data.ContinuingNOPATText.text = FirstContinueNOPAT + "$";
-            data.ContinuingValueText.text = FirstContinuingValue + "$";
+            data.SalesText.text = (int)FirstSales + "$";
+            data.OperatingProfitText.text = (int)FirstOperatingProfit + "$";
+            data.TaxText.text = (int)FirstTax + "$";
+            data.NOPATText.text = (int)FirstNOPAT + "$";
+            data.CIBalanceText.text = (int)FirstCIBalance + "$";
+            data.CICashFlowText.text = (int)FirstCICashFlow + "$";
+            data.NWCBalanceText.text = (int)FirstNWCBalance + "$";
+            data.NWCCashFlowText.text = (int)FirstNWCCashFlow + "$";
+            data.NCFText.text = (int)FirstFreeCashFlow + "$";
+            data.PresentValueText.text = System.Math.Round(FirstPresentValue,2) + "%";
+            data.CICashFlowOfNCFText.text = System.Math.Round(FirstPresentValueCashFlow,2) + "$";
+            data.ContinuingNOPATText.text = (int)FirstContinueNOPAT + "$";
+            data.ContinuingValueText.text = (int)FirstContinuingValue + "$";
+
+            if (x < ValueDrivers.PlanningPeriod_Years)
+            {
+                FirstSales = (int)(FirstSales * (1 + (ValueDrivers.SalesGrowthRate)));
+                FirstOperatingProfit = (int)(FirstSales * ValueDrivers.OperatingProfitMargin);
+                FirstTax = (int)(FirstOperatingProfit * ValueDrivers.CashTaxRate);
+                FirstNOPAT = (int)(FirstOperatingProfit - FirstTax);
+                int temp1 = FirstCIBalance;
+                FirstCIBalance = (int)(FirstSales * ValueDrivers.IncrementalFixedCapitalInvestment);
+                FirstCICashFlow = (int)(FirstCIBalance - temp1);
+                temp1 = FirstNWCBalance;
+                FirstNWCBalance = (int)(FirstSales * ValueDrivers.IncrementalWorkingCapitalInvestment);
+                FirstNWCCashFlow = (int)(FirstNWCBalance - temp1);
+                FirstFreeCashFlow = (FirstNOPAT + FirstCICashFlow + FirstNWCCashFlow);
+                FirstPresentValue = (FirstPresentValue / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
+                FirstPresentValueCashFlow = (FirstFreeCashFlow * FirstPresentValue);
+                BaseCumulativeNCF += FirstPresentValueCashFlow;
+                FirstContinueNOPAT = (FirstNOPAT);
+                FirstContinuingValue = (FirstContinueNOPAT / ValueDrivers.CostofCapital);
+            }
         }
     }
 }
