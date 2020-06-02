@@ -5,11 +5,15 @@ using TMPro;
 
 public class InformationFormulaData : MonoBehaviour
 {
-    public static string information = "empty" ;
-    public TextMeshProUGUI textUI;
+    public static string informationHover = "empty" ;
+    public static string title = "empty";
+    public static string description = "empty";
+    public TextMeshProUGUI textUI,titleText,descriptionText;
     // Update is called once per frame
     void Update()
     {
-        textUI.text = information; 
+        textUI.text = informationHover;
+        titleText.text = title;
+        descriptionText.text = description;
     }
 }

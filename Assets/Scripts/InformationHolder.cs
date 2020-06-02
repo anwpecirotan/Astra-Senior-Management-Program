@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InformationHolder : MonoBehaviour,IPointerEnterHandler
 {
-    public string information;
+    public string information,title,description;
 
-    public GameObject popupWindowObject;
+    public GameObject popupWindowObject,clickPanel;
 
     private void Start()
     {
@@ -16,9 +17,13 @@ public class InformationHolder : MonoBehaviour,IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("test");
-        InformationFormulaData.information = information;
+        InformationFormulaData.informationHover = information;
     }
 
-    
+    public void OnClick()
+    {
+        clickPanel.SetActive(true);
+        InformationFormulaData.title = title;
+        InformationFormulaData.description = description;
+    }
 }
