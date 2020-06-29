@@ -9,12 +9,12 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
 
     public static class CurrentAssets
     {
-        public static int Cash = 170;
-        public static int AccountsReceivable = 2820;
-        public static int Inventory = 4000;
-        public static int MiscellaneousCA = 510;
+        public static int Cash = TemplateData.CurrentAsset_Cash;
+        public static int AccountsReceivable = TemplateData.CurrentAsset_AccountsReceivable;
+        public static int Inventory = TemplateData.CurrentAsset_Inventory;
+        public static int MiscellaneousCA = TemplateData.CurrentAsset_MiscellaneousCA;
         public static int ToCurrentAssets = Cash + MiscellaneousCA + AccountsReceivable + Inventory;
-        public static int FixedAssets_NotFA = 2500;
+        public static int FixedAssets_NotFA = TemplateData.CurrentAsset_FixedAssets_NotFA;
     }
 
     public static class TotalAssets
@@ -24,22 +24,22 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
 
     public static class CurrentLiabilities_LessShorttermLoans
     {
-        public static int AccountsPayables = 2750;
-        public static int MiscellaneousCL = 500;
+        public static int AccountsPayables = TemplateData.CurrentLiabilities_LessShorttermLoans_AccountsPayables;
+        public static int MiscellaneousCL = TemplateData.CurrentLiabilities_LessShorttermLoans_MiscellaneousCL;
         public static int TotalCL = AccountsPayables + MiscellaneousCL; 
     }
 
     public static class Borrowing
     {
-        public static int Short_termLoans = 1000;
-        public static int Long_termLoans = 1544;
+        public static int Short_termLoans = TemplateData.Borrowing_Short_termLoans;
+        public static int Long_termLoans = TemplateData.Borrowing_Long_termLoans;
         public static int TotalBorr = Short_termLoans + Long_termLoans;
     }
 
     public static class OwnersEquity
     {
-        public static int IssuedCapital = 1980;
-        public static int RetainedEarnings = 2226;
+        public static int IssuedCapital = TemplateData.OwnersEquity_IssuedCapital;
+        public static int RetainedEarnings = TemplateData.OwnersEquity_RetainedEarnings;
         public static int TotalOE = IssuedCapital + RetainedEarnings;
     }
 
@@ -50,14 +50,14 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
 
     public class ProfitandLossStatement
     {
-        public static int Sales = 12500;
-        public static int OperatingExpenses = 11500;
+        public static int Sales = TemplateData.ProfitandLossStatement_Sales;
+        public static int OperatingExpenses = TemplateData.ProfitandLossStatement_OperatingExpenses;
         public static int EBIT_EarningsBeforeInterestandTax = Sales - OperatingExpenses;
-        public static int Interest = 192;
+        public static int Interest = TemplateData.ProfitandLossStatement_Interest;
         public static int EBT_EarningsBeforeTax = EBIT_EarningsBeforeInterestandTax - Interest;
-        public static int Tax = 202;
+        public static int Tax = TemplateData.ProfitandLossStatement_Tax;
         public static int EAT_EarningsAfterTax = EBT_EarningsBeforeTax - Tax;
-        public static int Dividend = 0;
+        public static int Dividend = TemplateData.ProfitandLossStatement_Dividend;
         public static int RE_RetainedEarnings = EAT_EarningsAfterTax - Dividend;
     }
 

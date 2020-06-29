@@ -93,8 +93,8 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
     public class NetCashFlows_FreeCashFlows
     {
-        public static double ForecastPeriodYear1 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 + 
-                                                   CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1 +
+        public static double ForecastPeriodYear1 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 - 
+                                                   CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1 -
                                                    NetWorkingCapitalInvestments.CashFlows.ForecastPeriodYear1;
         //public static double ForecastPeriodYear2 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear2 +
         //                                           CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear2 +
@@ -111,7 +111,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         public class PresentValueFactor
         {
-            public static double BaseFigures = ValueDrivers.CostofCapital;
+            public static double BaseFigures = BoundariesData.WACC;
             public static double ForecastPeriodYear1 = 1 / (1 + BaseFigures);
             //public static double ForecastPeriodYear2 = ForecastPeriodYear1 / (1 + BaseFigures);
             //public static double ForecastPeriodYear3 = ForecastPeriodYear2 / (1 + BaseFigures);
@@ -147,7 +147,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
                 //public static double ForecastPeriodYear5 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear5;
             }
 
-            public static double BaseFigures = ValueDrivers.CostofCapital;
+            public static double BaseFigures = BoundariesData.WACC;
             public static double ForecastPeriodYear1 = NetOperatingProfitAfterTax_NOPAT.ForecastPeriodYear1 / BaseFigures;
             //public static double ForecastPeriodYear2 = NetOperatingProfitAfterTax_NOPAT.ForecastPeriodYear2 / BaseFigures;
             //public static double ForecastPeriodYear3 = NetOperatingProfitAfterTax_NOPAT.ForecastPeriodYear3 / BaseFigures;
@@ -256,12 +256,15 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
                 temp1 = FirstNWCBalance;
                 FirstNWCBalance = (int)(FirstSales * ValueDrivers.IncrementalWorkingCapitalInvestment);
                 FirstNWCCashFlow = (int)(FirstNWCBalance - temp1);
-                FirstFreeCashFlow = (FirstNOPAT + FirstCICashFlow + FirstNWCCashFlow);
+                FirstFreeCashFlow = (FirstNOPAT - FirstCICashFlow - FirstNWCCashFlow);
                 FirstPresentValue = (FirstPresentValue / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
                 FirstPresentValueCashFlow = (FirstFreeCashFlow * FirstPresentValue);
                 BaseCumulativeNCF += FirstPresentValueCashFlow;
                 FirstContinueNOPAT = (FirstNOPAT);
-                FirstContinuingValue = (FirstContinueNOPAT / ValueDrivers.CostofCapital);
+                if(x != 4)
+                FirstContinuingValue = (FirstContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
+                else if(x == 4)
+                FirstContinuingValue = ((double)FirstContinueNOPAT *(1 + TemplateData.AverageEconomicGrowth) / (NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures - TemplateData.AverageEconomicGrowth));
             }
         }
     }

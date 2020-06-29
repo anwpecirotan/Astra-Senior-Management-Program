@@ -17,6 +17,7 @@ public class BusinessValueAndShareholderValue : MonoBehaviour
 
     public TextMeshProUGUI CummulativePVofNetCashFlowsText, PVofContinuingValueText, BusinessValueText, AddNonOperatingAssetsText, CorporateValueText;
     public TextMeshProUGUI LessMarketValueOfDebtsText, ValueToShareholdersText, BookValueOfEquityText, ShareholdersValueAddedText;
+    public static double shareholderValueAdded;
 
     void Start()
     {
@@ -44,5 +45,6 @@ public class BusinessValueAndShareholderValue : MonoBehaviour
         ValueToShareholdersText.text = (int)ValueToShareholders + "$";
         BookValueOfEquityText.text = (int)BookValueOfEquity + "$";
         ShareholdersValueAddedText.text = (int)ShareholdersValueAdded + "$";
+        shareholderValueAdded = ShareholdersValueAdded;
     }
 }

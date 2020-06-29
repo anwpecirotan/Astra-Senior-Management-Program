@@ -17,9 +17,18 @@ public class KeyFigures : MonoBehaviour
     public static int OperatingAssets = NWC + FA;
     public static int InvestedCapital_CapitalEmployed = STLoans + OwnersEquity + LTLoans;
 
+    public static double ROE = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax / LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
+    public static double debtOfEquityRatio = (double)LiabilitiesandOwnersEquity.Borrowing.TotalBorr / LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
+    public static double DPO = 0.30;
+    public static double retainEarningRatio = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings / LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax;
+    public static double IGR = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings / LiabilitiesandOwnersEquity.TotalAssets.totalAssets;
+    public static double SGR = ROE * retainEarningRatio;
+
     public TextMeshProUGUI FixedAssetsText, NetWorkingCapital_NWCText, CurrentAssetsText, CurrentLiabilities_LessSTLoansText;
     public TextMeshProUGUI OperatingAssetsText, NWCText, FAText, InvestedCapital_CapitalEmployedText;
     public TextMeshProUGUI STLoansText, LTLoansText, OwnersEquityText;
+    public TextMeshProUGUI ROEText, debtOfEquityRatioText, DPOText;
+    public TextMeshProUGUI retainEarningRatioText, IGRText, SGRText;
 
     void Start()
     {
@@ -34,10 +43,17 @@ public class KeyFigures : MonoBehaviour
         STLoansText.text = STLoans + "$";
         LTLoansText.text = LTLoans + "$";
         OwnersEquityText.text = OwnersEquity + "$";
+
+        ROEText.text = System.Math.Round(ROE * 100, 2) + "%";
+        debtOfEquityRatioText.text = System.Math.Round(debtOfEquityRatio * 100, 2) + "%";
+        DPOText.text = System.Math.Round(DPO * 100, 2) + "%";
+        retainEarningRatioText.text = System.Math.Round(retainEarningRatio * 100, 2) + "%";
+        IGRText.text = System.Math.Round(IGR * 100, 2) + "%";
+        SGRText.text = System.Math.Round(SGR * 100, 2) + "%";
     }
 
     void Update()
     {
-        
+
     }
 }

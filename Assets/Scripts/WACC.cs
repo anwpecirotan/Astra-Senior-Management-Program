@@ -15,7 +15,7 @@ public class WACC : MonoBehaviour
         {
             public static int dollarSL = LiabilitiesandOwnersEquity.Borrowing.Short_termLoans;
             public static double Weights = ((double)dollarSL / (LiabilitiesandOwnersEquity.Borrowing.TotalBorr + LiabilitiesandOwnersEquity.OwnersEquity.TotalOE))* 100;
-            public static double Cost = 0.09 * 100;
+            public static double Cost = TemplateData.Funds_ShorttermLoans_Cost * 100;
             public static double AfterTaxCost = Cost * (100 - ValueDrivers.CashTaxRate *100)/100;
             public static double WeightedCost = AfterTaxCost * Weights/100;
         }
@@ -24,7 +24,7 @@ public class WACC : MonoBehaviour
         {
             public static int dollarLL = LiabilitiesandOwnersEquity.Borrowing.Long_termLoans;
             public static double Weights = ((double)dollarLL / (LiabilitiesandOwnersEquity.Borrowing.TotalBorr + LiabilitiesandOwnersEquity.OwnersEquity.TotalOE)) * 100;
-            public static double Cost = 0.1 * 100;
+            public static double Cost = TemplateData.Funds_LongtermLoans_Cost * 100;
             public static double AfterTaxCost = Cost * (100 - ValueDrivers.CashTaxRate * 100) /100;
             public static double WeightedCost = AfterTaxCost * Weights / 100;
         }
@@ -33,7 +33,7 @@ public class WACC : MonoBehaviour
         {
             public static int dollarOE = LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
             public static double Weights = ((double)dollarOE / (LiabilitiesandOwnersEquity.Borrowing.TotalBorr + LiabilitiesandOwnersEquity.OwnersEquity.TotalOE)) *100;
-            public static double Cost = 0.12 * 100;
+            public static double Cost = TemplateData.Funds_OwnersEquity_Cost * 100;
             public static double AfterTaxCost = Cost * (100 - ValueDrivers.CashTaxRate * 100) /100;
             public static double WeightedCost = AfterTaxCost * Weights / 100;
         }
