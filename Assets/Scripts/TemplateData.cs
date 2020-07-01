@@ -30,19 +30,4 @@ public class TemplateData : MonoBehaviour
     public static double Funds_OwnersEquity_Cost = 0.12;
     
     public static double AverageEconomicGrowth = 0.03;
-
-    public static double Realistic_OPM = 0.09;
-    public static double Realistic_Inc_FC = 0.1;
-    public static double Realistic_Inc_WC = 0.25;
-    public static double Ideal_Sales_Growth_Rate = 0.1;
-    public static double WACC_Baseline = 0.1;
-    public static double Factor_of_Sales_Growth = 0.025;
-    public static double Impact_on_WACC = 0.01;
-
-    public static double ValueDriver_SalesGrowthRate = 0.075;
-    public static double ValueDriver_OperatingProfitMargin = 0.08;
-    public static double ValueDriver_CashTaxRate = 0.25;
-    public static double ValueDriver_IncrementalFixedCapitalInvestment = 0.2;
-    public static double ValueDriver_IncrementalWorkingCapitalInvestment = 0.34;
-    public static int ValueDriver_PlanningPeriod_Years = 5;
 }

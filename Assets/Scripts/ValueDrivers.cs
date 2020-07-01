@@ -19,10 +19,10 @@ public class ValueDrivers
 
     public static double SalesGrowthRate = 0;
     public static double OperatingProfitMargin = 0;
-    public static double CashTaxRate = TemplateData.ValueDriver_CashTaxRate;
+    public static double CashTaxRate = 0.25;
     public static double IncrementalFixedCapitalInvestment = 0;
     public static double IncrementalWorkingCapitalInvestment = 0;
     //public static double CostofCapital = 0;
-    public static int PlanningPeriod_Years = TemplateData.ValueDriver_PlanningPeriod_Years;
+    public static int PlanningPeriod_Years = 5;
     
 }
