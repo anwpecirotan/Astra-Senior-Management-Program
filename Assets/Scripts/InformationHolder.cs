@@ -12,7 +12,7 @@ public class InformationHolder : MonoBehaviour,IPointerEnterHandler
 
     private void Start()
     {
-        popupWindowObject.SetActive(false);
+        //popupWindowObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
