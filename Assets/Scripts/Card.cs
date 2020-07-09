@@ -29,7 +29,7 @@ public class Card : MonoBehaviour
 
     public void InduceRight()
     {
-        if(tagId == "Operation")
+        if(tagId == "Profit")
         {
             gameManager.AnswerTrue();
         }
@@ -42,7 +42,7 @@ public class Card : MonoBehaviour
 
     public void InduceLeft()
     {
-        if (tagId == "Investment")
+        if (tagId == "Growth")
         {
             gameManager.AnswerTrue();
         }
@@ -65,4 +65,5 @@ public class Card : MonoBehaviour
         }
         anim.SetTrigger("Up");
     }
+
 }

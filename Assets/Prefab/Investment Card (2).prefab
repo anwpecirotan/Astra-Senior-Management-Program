@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2707388451021267678}
   m_Layer: 0
   m_Name: Investment Card (2)
-  m_TagString: Untagged
+  m_TagString: Growth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028087b18346514f983032888da47d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagId: Investment
+  tagId: Growth
   gameManager: {fileID: 0}
   isMouseOver: 0
   title: {fileID: 6614090488238226634}

@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 5044155859813754934}
   m_Layer: 0
   m_Name: Operating Card
-  m_TagString: Untagged
+  m_TagString: Growth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028087b18346514f983032888da47d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagId: Operation
+  tagId: Growth
   gameManager: {fileID: 0}
   isMouseOver: 0
   title: {fileID: 6868618969940964030}

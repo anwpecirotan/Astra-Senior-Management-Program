@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject cardTemplate;
     public List<GameObject> cardList;
     public Card card;
     public Text title, description;
@@ -15,7 +17,22 @@ public class GameManager : MonoBehaviour
     public Image check, cross;
     public GameObject endPanel;
     public Text scoreText;
-    private int score;
+    public static int score;
+
+    public static GameManager instance = null;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +100,18 @@ public class GameManager : MonoBehaviour
             Destroy(cardBack.gameObject);
         }
     }
+
+    public void AddCard(string title,string description,Image image,string type)
+    {
+        Card currCard = cardTemplate.GetComponent<Card>();
+        currCard.title.text = title;
+        currCard.description.text = description;
+        currCard.image = image;
+        cardTemplate.tag = "Profit";
+        cardList.Add(cardTemplate);
+        //Instantiate(cardTemplate, card.transform.position, Quaternion.identity);
+    }
+    
 
     private void RemovedCheck()
     {

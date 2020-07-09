@@ -57,15 +57,14 @@ public class SwipeLogic : MonoBehaviour
         //        change = true;
         //    }
         //}
-        
 
-        if (card.transform.position.x == initPos.x && card.transform.position.y == initPos.y)
+
+        if (card != null)
         {
-            if (change)
+            if (card.transform.position.x == initPos.x && card.transform.position.y == initPos.y)
             {
-                gameManager.ShowCard();
+                change = false;
             }
-            change = false;
         }
 
         //if (!change)
@@ -121,4 +120,5 @@ public class SwipeLogic : MonoBehaviour
             change = true;
         }
     }
+    
 }

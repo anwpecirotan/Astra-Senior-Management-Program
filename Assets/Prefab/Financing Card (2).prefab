@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 5594962515141648235}
   m_Layer: 0
   m_Name: Financing Card (2)
-  m_TagString: Untagged
+  m_TagString: Profit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028087b18346514f983032888da47d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagId: Financing
+  tagId: Profit
   gameManager: {fileID: 0}
   isMouseOver: 0
   title: {fileID: 6316821703679474260}
