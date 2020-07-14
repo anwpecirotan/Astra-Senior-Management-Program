@@ -170,14 +170,18 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
     private double FirstPresentValueCashFlow, FirstPresentValue, FirstFreeCashFlow, FirstContinuingValue;
     public static double BaseCumulativeNCF;
     public static int EndPeriodNOPAT;
+    public static double StandardCumulativeNCF;
 
     public GameObject ForecastPeriodYear,content,changeable;
 
     void Start()
     {
+        BaseCumulativeNCF = 0;
+        StandardCumulativeNCF = 0;
         AssignBaseText();
         AssignFirstValue();
         AssignPeriodForecast();
+        CountStandard();
     }
 
     void Update()
@@ -227,7 +231,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
                 EndPeriodNOPAT = FirstNOPAT;
             }
             GameObject PeriodForecast = Instantiate(ForecastPeriodYear, changeable.transform);
-            PeriodForecast.transform.localPosition = new Vector2(80 * x, 0);
+            PeriodForecast.transform.localPosition = new Vector2(120 * x, 0);
             YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
             data.YearNumText.text = x.ToString();
             data.SalesText.text = (int)FirstSales + "$";
@@ -267,5 +271,66 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
                 FirstContinuingValue = ((double)FirstContinueNOPAT *(1 + TemplateData.AverageEconomicGrowth) / (NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures - TemplateData.AverageEconomicGrowth));
             }
         }
+    }
+
+    private void CountStandard()
+    {
+        int StdSales, StdOperatingProfit, StdTax, StdNOPAT, StdCIBalance, StdCICashFlow;
+        int StdNWCBalance, StdNWCCashFlow, StdContinueNOPAT;
+        double StdPresentValueCashFlow, StdPresentValue, StdFreeCashFlow, StdContinuingValue;
+        
+        StdSales = (int)(LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales * (1 + (TemplateData.ValueDriver_SalesGrowthRate)));
+        StdOperatingProfit = (int)(StdSales * TemplateData.ValueDriver_OperatingProfitMargin);
+        StdTax = (int)(StdOperatingProfit * TemplateData.ValueDriver_CashTaxRate);
+        StdNOPAT = (int)(StdOperatingProfit - StdTax);
+        StdCIBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalFixedCapitalInvestment);
+        StdCICashFlow = (int)(StdCIBalance - KeyFigures.FixedAssets);
+        StdNWCBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment);
+        StdNWCCashFlow = (int)(StdNWCBalance - KeyFigures.NWC);
+        StdFreeCashFlow = StdNOPAT - StdCICashFlow - StdNWCCashFlow;
+        StdPresentValue = (1 / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
+        StdPresentValueCashFlow = (StdFreeCashFlow * StdPresentValue);
+        StdContinueNOPAT = StdNOPAT;
+        StdContinuingValue = (StdContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
+
+        for (int x = 1; x <= ValueDrivers.PlanningPeriod_Years; x++)
+        {
+            //if (x == ValueDrivers.PlanningPeriod_Years)
+            //{
+            //    NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures = FirstPresentValue * FirstContinuingValue;
+            //    EndPeriodNOPAT = FirstNOPAT;
+            //}
+            //GameObject PeriodForecast = Instantiate(ForecastPeriodYear, changeable.transform);
+            //PeriodForecast.transform.localPosition = new Vector2(80 * x, 0);
+            //YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
+
+            if (x < ValueDrivers.PlanningPeriod_Years)
+            {
+                StdSales = (int)(StdSales * (1 + TemplateData.ValueDriver_SalesGrowthRate));
+                StdOperatingProfit = (int)(StdSales * TemplateData.ValueDriver_OperatingProfitMargin);
+                StdTax = (int)(StdOperatingProfit * TemplateData.ValueDriver_CashTaxRate);
+                StdNOPAT = (int)(StdOperatingProfit - StdTax);
+                int temp1 = StdCIBalance;
+                StdCIBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalFixedCapitalInvestment);
+                StdCICashFlow = (int)(StdCIBalance - temp1);
+                temp1 = StdNWCBalance;
+                StdNWCBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment);
+                StdNWCCashFlow = (int)(StdNWCBalance - temp1);
+                StdFreeCashFlow = (StdNOPAT - StdCICashFlow - StdNWCCashFlow);
+                StdPresentValue = (StdPresentValue / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
+                StdPresentValueCashFlow = (StdFreeCashFlow * StdPresentValue);
+                StandardCumulativeNCF += StdPresentValueCashFlow;
+                StdContinueNOPAT = (StdNOPAT);
+                if (x != 4)
+                    StdContinuingValue = (StdContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
+                else if (x == 4)
+                    StdContinuingValue = ((double)StdContinueNOPAT * (1 + TemplateData.AverageEconomicGrowth) / (NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures - TemplateData.AverageEconomicGrowth));
+            }
+        }
+
+        StandardCumulativeNCF += StdContinuingValue * StdPresentValue;
+        StandardCumulativeNCF -= LiabilitiesandOwnersEquity.Borrowing.TotalBorr;
+        StandardCumulativeNCF -= KeyFigures.OwnersEquity;
+        StandardCumulativeNCF += 272;
     }
 }

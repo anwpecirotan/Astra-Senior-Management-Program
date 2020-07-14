@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Score.unity
     guid: 0463c667951994f4595cbb81a76a39d3
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/ProfitGame.unity
     guid: 367096cde4900ff4ab208fe83fafc113
   - enabled: 1
     path: Assets/Scenes/ProfitScore.unity

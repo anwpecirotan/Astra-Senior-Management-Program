@@ -37,7 +37,7 @@ public class Card : MonoBehaviour
         {
             gameManager.AnswerFalse();
         }
-        anim.SetTrigger("Right");
+        //anim.SetTrigger("Right");
     }
 
     public void InduceLeft()
@@ -50,7 +50,7 @@ public class Card : MonoBehaviour
         {
             gameManager.AnswerFalse();
         }
-        anim.SetTrigger("Left");
+        //anim.SetTrigger("Left");
     }
 
     public void InduceUp()

@@ -21,7 +21,7 @@ public class ScoreHandler : MonoBehaviour
     {
         currentScore = Score.A;
         scoreText.text = "A";
-        scoreDescriptionText.text = "SELAMAT..!!! Anda berhasil meningkatkan nilai perusahaan dari 4390. menjaadi " +(int) BusinessValueAndShareholderValue.shareholderValueAdded +  ".";
+        scoreDescriptionText.text = "SELAMAT..!!! Anda berhasil meningkatkan nilai perusahaan dari "+(int)OperatingCashFlowsForecasts.StandardCumulativeNCF + ". menjaadi " +(int) BusinessValueAndShareholderValue.shareholderValueAdded +  ".";
         if (ValueDrivers.OperatingProfitMargin > BoundariesData.Realistic_OPM || ValueDrivers.IncrementalFixedCapitalInvestment < BoundariesData.Realistic_Inc_FC || ValueDrivers.IncrementalWorkingCapitalInvestment < BoundariesData.Realistic_Inc_WC)
         {
             currentScore = Score.C;
@@ -34,13 +34,13 @@ public class ScoreHandler : MonoBehaviour
             scoreText.text = "C";
             scoreDescriptionText.text = "Inisiatif Anda tidak realistis";
         }
-        else if(BusinessValueAndShareholderValue.shareholderValueAdded < standardScore)
+        else if(BusinessValueAndShareholderValue.shareholderValueAdded < (int)OperatingCashFlowsForecasts.StandardCumulativeNCF)
         {
             currentScore = Score.B;
             scoreText.text = "B";
-            scoreDescriptionText.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari 4390. menjaadi "+ (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
+            scoreDescriptionText.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari " + (int)OperatingCashFlowsForecasts.StandardCumulativeNCF + ". menjaadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
         }
-        else if(BusinessValueAndShareholderValue.shareholderValueAdded == standardScore)
+        else if((int)BusinessValueAndShareholderValue.shareholderValueAdded == (int)OperatingCashFlowsForecasts.StandardCumulativeNCF)
         {
             currentScore = Score.B;
             scoreText.text = "B";

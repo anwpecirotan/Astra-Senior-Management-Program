@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneHandler : MonoBehaviour
 {
+    public GameObject skipButton;
+    public GameObject nextButton;
     public int nextScene;
     public Image currentImage;
     public List<Sprite> spriteList;
@@ -24,11 +26,26 @@ public class CutsceneHandler : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log("click");
+        currentImage.sprite = spriteQueue.Dequeue();
         if (spriteQueue.Count == 0)
         {
-            SceneManager.LoadScene(nextScene);
+            nextButton.SetActive(true);
             return;
         }
+        if (spriteQueue.Count == 1)
+        {
+            skipButton.SetActive(false);
+        }
+    }
+
+    public void Skip()
+    {
+        skipButton.SetActive(false);
+        while(spriteQueue.Count != 1)
+        {
+            spriteQueue.Dequeue();
+        }
         currentImage.sprite = spriteQueue.Dequeue();
+        nextButton.SetActive(true);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TemplateData : MonoBehaviour
 {
+    public static string CompanyName = "Manufacturing";
     //balance sheet
     public static int CurrentAsset_Cash = 170;
     public static int CurrentAsset_AccountsReceivable = 2820;
