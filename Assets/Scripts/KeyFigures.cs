@@ -19,7 +19,7 @@ public class KeyFigures : MonoBehaviour
 
     public static double ROE = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax / LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
     public static double debtOfEquityRatio = (double)LiabilitiesandOwnersEquity.Borrowing.TotalBorr / LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
-    public static double DPO = 0.30;
+    public static double DPO = TemplateData.KeyFigures_DPO;
     public static double retainEarningRatio = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings / LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax;
     public static double IGR = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings / LiabilitiesandOwnersEquity.TotalAssets.totalAssets;
     public static double SGR = ROE * retainEarningRatio;

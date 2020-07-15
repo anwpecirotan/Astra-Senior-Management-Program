@@ -57,7 +57,7 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
         public static int EBT_EarningsBeforeTax = EBIT_EarningsBeforeInterestandTax - Interest;
         public static int Tax = TemplateData.ProfitandLossStatement_Tax;
         public static int EAT_EarningsAfterTax = EBT_EarningsBeforeTax - Tax;
-        public static int Dividend = TemplateData.ProfitandLossStatement_Dividend;
+        public static int Dividend = (int)(EAT_EarningsAfterTax * KeyFigures.DPO);
         public static int RE_RetainedEarnings = EAT_EarningsAfterTax - Dividend;
     }
 

@@ -26,7 +26,8 @@ public class TemplateData : MonoBehaviour
     public static int ProfitandLossStatement_OperatingExpenses = 11500;
     public static int ProfitandLossStatement_Interest = 192;
     public static int ProfitandLossStatement_Tax = 202;
-    public static int ProfitandLossStatement_Dividend = 182;
+    //public static int ProfitandLossStatement_Dividend = 182;
+    public static double KeyFigures_DPO = 0.3;
 
     //supporting variables
     public static double Funds_ShorttermLoans_Cost = 0.09;
