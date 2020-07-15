@@ -115,10 +115,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddProfitCard(string title,string description,Image image)
+    public void AddProfitCard(string description,Image image)
     {
         Card currCard = cardTemplate.GetComponent<Card>();
-        currCard.title.text = title;
+        //currCard.title.text = title;
         currCard.description.text = description;
         currCard.image = image;
         cardTemplate.tag = "Profit";
@@ -126,10 +126,10 @@ public class GameManager : MonoBehaviour
         //Instantiate(cardTemplate, card.transform.position, Quaternion.identity);
     }
 
-    public void AddGrowthCard(string title, string description, Image image)
+    public void AddGrowthCard(string description, Image image)
     {
         Card currCard = cardTemplate.GetComponent<Card>();
-        currCard.title.text = title;
+        //currCard.title.text = title;
         currCard.description.text = description;
         currCard.image = image;
         cardTemplate.tag = "Growth";
