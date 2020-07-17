@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public bool waiting;
     public static int score;
+    public int nextSceneIndex;
 
     public static GameManager instance = null;
 
@@ -151,8 +153,9 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        Time.timeScale = 0f;
-        endPanel.SetActive(true);
-        scoreText.text = scoreText.text + score;
+        //Time.timeScale = 0f;
+        //endPanel.SetActive(true);
+        //scoreText.text = scoreText.text + score;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }

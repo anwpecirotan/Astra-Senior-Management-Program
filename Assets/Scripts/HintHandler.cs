@@ -13,7 +13,7 @@ public class HintHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firstPageTop.text = "Berikut ini disajikan Neraca dan Penghasilan terbaru laporan PT SVA Tbk, sebuah perusahaan " +TemplateData.CompanyName +" di Indonesia";
+        firstPageTop.text = "Berikut ini disajikan Neraca dan Penghasilan terbaru laporan sebuah perusahaan " +TemplateData.CompanyName +" di Indonesia";
         firstPageBottom.text = "Secara historis, perusahaan telah mengalami pertumbuhan rata-rata " + TemplateData.ValueDriver_SalesGrowthRate * 100 + "% per tahun, margin laba operasionalnya rata-rata selama " + TemplateData.ValueDriver_PlanningPeriod_Years + " tahun terakhir adalah " + TemplateData.ValueDriver_OperatingProfitMargin * 100 + "%. ";
         secondPage.text = "Tarif pajak tunai perusahaan adalah "+TemplateData.ValueDriver_CashTaxRate*100+"%, dan dengan struktur modal saat ini, biaya rata-rata modal tertimbang (WACC) PT SVA Tbk adalah "+TemplateData.WACC_Baseline*100+"%. Investasi dalam Modal Tetap dan Modal Kerja juga berdasarkan catatan sejarah masing-masing sebesar "+TemplateData.ValueDriver_IncrementalFixedCapitalInvestment*100+"% dan "+TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment*100+"% dari penjualan tambahan.";
         thirdPage.text = "ROE perusahaan saat ini adalah "+ System.Math.Round(KeyFigures.ROE*100,2)+"% dan rasio utang terhadap ekuitas adalah "+ System.Math.Round(KeyFigures.debtOfEquityRatio*100, 2) + "%, yang relatif sehat.";
