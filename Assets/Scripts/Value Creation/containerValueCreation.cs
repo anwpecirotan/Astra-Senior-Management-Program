@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class containerValueCreation : MonoBehaviour
 {
+    public Button button;
     public string ValueCreationId;
     public string CompanyName;
 
@@ -66,6 +67,12 @@ public class containerValueCreation : MonoBehaviour
         TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment = ValueDriver_IncrementalWorkingCapitalInvestment;
         TemplateData.ValueDriver_PlanningPeriod_Years = ValueDriver_PlanningPeriod_Years;
 
+        TemplateData.CurrentAsset_Cash = CurrentAsset_Cash;
+        TemplateData.CurrentAsset_AccountsReceivable = CurrentAsset_AccountsReceivable;
+        TemplateData.CurrentAsset_Inventory = CurrentAsset_Inventory;
+        TemplateData.CurrentAsset_MiscellaneousCA = CurrentAsset_MiscellaneousCA;
+        TemplateData.CurrentAsset_FixedAssets_NotFA = CurrentAsset_FixedAssets_NotFA;
+
         TemplateData.CurrentLiabilities_LessShorttermLoans_AccountsPayables = CurrentLiabilities_LessShorttermLoans_AccountsPayables;
         TemplateData.CurrentLiabilities_LessShorttermLoans_MiscellaneousCL = CurrentLiabilities_LessShorttermLoans_MiscellaneousCL;
 
@@ -93,5 +100,7 @@ public class containerValueCreation : MonoBehaviour
         TemplateData.WACC_Baseline = WACC_Baseline;
         TemplateData.Factor_of_Sales_Growth = Factor_of_Sales_Growth;
         TemplateData.Impact_on_WACC = Impact_on_WACC;
+
+        button.LoadSceneNumber(1);
     }
 }

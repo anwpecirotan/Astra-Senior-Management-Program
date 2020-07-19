@@ -14,7 +14,7 @@ public class ValueCreationRequest : MonoBehaviour
     public TextMeshProUGUI dropDownDefault;
 
     public GameObject TemplateCanvas;
-    public Button button;
+    //public Button button;
 
     public containerValueCreation containerVC;
 

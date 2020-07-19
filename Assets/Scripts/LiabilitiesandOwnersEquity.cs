@@ -74,6 +74,13 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
 
     void Start()
     {
+        getData();
+        
+        
+    }
+
+    private void Update()
+    {
         CashText.text = CurrentAssets.Cash + "$";
         AccountsReceivableText.text = CurrentAssets.AccountsReceivable + "$";
         InventoryText.text = CurrentAssets.Inventory + "$";
@@ -106,11 +113,41 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
         EAT_EarningsAfterTaxText.text = ProfitandLossStatement.EAT_EarningsAfterTax + "$";
         DividendText.text = ProfitandLossStatement.Dividend + "$";
         RE_RetainedEarningsText.text = ProfitandLossStatement.RE_RetainedEarnings + "$";
-        
     }
 
-    void Update()
+    private void getData()
     {
-        
-    }
+        CurrentAssets.Cash = TemplateData.CurrentAsset_Cash;
+        CurrentAssets.AccountsReceivable = TemplateData.CurrentAsset_AccountsReceivable;
+        CurrentAssets.Inventory = TemplateData.CurrentAsset_Inventory;
+        CurrentAssets.MiscellaneousCA = TemplateData.CurrentAsset_MiscellaneousCA;
+        CurrentAssets.ToCurrentAssets = CurrentAssets.Cash + CurrentAssets.MiscellaneousCA + CurrentAssets.AccountsReceivable + CurrentAssets.Inventory;
+        CurrentAssets.FixedAssets_NotFA = TemplateData.CurrentAsset_FixedAssets_NotFA;
+
+        TotalAssets.totalAssets = CurrentAssets.ToCurrentAssets + CurrentAssets.FixedAssets_NotFA;
+
+        CurrentLiabilities_LessShorttermLoans.AccountsPayables = TemplateData.CurrentLiabilities_LessShorttermLoans_AccountsPayables;
+        CurrentLiabilities_LessShorttermLoans.MiscellaneousCL = TemplateData.CurrentLiabilities_LessShorttermLoans_MiscellaneousCL;
+        CurrentLiabilities_LessShorttermLoans.TotalCL = CurrentLiabilities_LessShorttermLoans.AccountsPayables + CurrentLiabilities_LessShorttermLoans.MiscellaneousCL;
+
+        Borrowing.Short_termLoans = TemplateData.Borrowing_Short_termLoans;
+        Borrowing.Long_termLoans = TemplateData.Borrowing_Long_termLoans;
+        Borrowing.TotalBorr = Borrowing.Short_termLoans + Borrowing.Long_termLoans;
+
+        OwnersEquity.IssuedCapital = TemplateData.OwnersEquity_IssuedCapital;
+        OwnersEquity.RetainedEarnings = TemplateData.OwnersEquity_RetainedEarnings;
+        OwnersEquity.TotalOE = OwnersEquity.IssuedCapital + OwnersEquity.RetainedEarnings;
+
+        TotalLiabilitiesandOwnersEquity.TotalLOE = CurrentLiabilities_LessShorttermLoans.TotalCL + Borrowing.TotalBorr + OwnersEquity.TotalOE;
+
+        ProfitandLossStatement.Sales = TemplateData.ProfitandLossStatement_Sales;
+        ProfitandLossStatement.OperatingExpenses = TemplateData.ProfitandLossStatement_OperatingExpenses;
+        ProfitandLossStatement.EBIT_EarningsBeforeInterestandTax = ProfitandLossStatement.Sales - ProfitandLossStatement.OperatingExpenses;
+        ProfitandLossStatement.Interest = TemplateData.ProfitandLossStatement_Interest;
+        ProfitandLossStatement.EBT_EarningsBeforeTax = ProfitandLossStatement.EBIT_EarningsBeforeInterestandTax - ProfitandLossStatement.Interest;
+        ProfitandLossStatement.Tax = TemplateData.ProfitandLossStatement_Tax;
+        ProfitandLossStatement.EAT_EarningsAfterTax = ProfitandLossStatement.EBT_EarningsBeforeTax - ProfitandLossStatement.Tax;
+        ProfitandLossStatement.Dividend = (int)(ProfitandLossStatement.EAT_EarningsAfterTax * KeyFigures.DPO);
+        ProfitandLossStatement.RE_RetainedEarnings = ProfitandLossStatement.EAT_EarningsAfterTax - ProfitandLossStatement.Dividend;
+}
 }

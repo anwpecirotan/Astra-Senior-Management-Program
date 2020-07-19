@@ -32,6 +32,11 @@ public class KeyFigures : MonoBehaviour
 
     void Start()
     {
+        getData();
+    }
+
+    private void Update()
+    {
         FixedAssetsText.text = FixedAssets + "$";
         NetWorkingCapital_NWCText.text = NetWorkingCapital_NWC + "$";
         CurrentAssetsText.text = CurrentAssets + "$";
@@ -52,8 +57,25 @@ public class KeyFigures : MonoBehaviour
         SGRText.text = System.Math.Round(SGR * 100, 2) + "%";
     }
 
-    void Update()
+    private void getData()
     {
+        FixedAssets = LiabilitiesandOwnersEquity.CurrentAssets.FixedAssets_NotFA;
+        CurrentAssets = LiabilitiesandOwnersEquity.CurrentAssets.ToCurrentAssets;
+        CurrentLiabilities_LessSTLoans = LiabilitiesandOwnersEquity.CurrentLiabilities_LessShorttermLoans.TotalCL;
+        STLoans = LiabilitiesandOwnersEquity.Borrowing.Short_termLoans;
+        LTLoans = LiabilitiesandOwnersEquity.Borrowing.Long_termLoans;
+        OwnersEquity = LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
+        NetWorkingCapital_NWC = CurrentAssets - CurrentLiabilities_LessSTLoans;
+        NWC = NetWorkingCapital_NWC;
+        FA = FixedAssets;
+        OperatingAssets = NWC + FA;
+        InvestedCapital_CapitalEmployed = STLoans + OwnersEquity + LTLoans;
 
-    }
+        ROE = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax / LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
+        debtOfEquityRatio = (double)LiabilitiesandOwnersEquity.Borrowing.TotalBorr / LiabilitiesandOwnersEquity.OwnersEquity.TotalOE;
+        DPO = TemplateData.KeyFigures_DPO;
+        retainEarningRatio = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings / LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax;
+        IGR = (double)LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings / LiabilitiesandOwnersEquity.TotalAssets.totalAssets;
+        SGR = ROE * retainEarningRatio;
+}
 }

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject cardTemplate;
-    public List<Card> cardList;
+    private List<Card> cardList;
     public Card card;
     public Text title;
     public TextMeshProUGUI description;
@@ -41,21 +41,25 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cardList = new List<Card>();
+        waiting = false;
         AddCard();
-        NextCard();
-        ShowCard();
+        //NextCard();
+        //ShowCard();
+        Invoke("NextCard", 0.2f);
+        Invoke("ShowCard", 0.3f);
         score = 0;
         Time.timeScale = 1;
-        waiting = false;
     }
 
     public void AnswerTrue()
     {
         if (!waiting)
         {
+            waiting = true;
             check.SetActive(true);
             MainText.SetActive(false);
-            Invoke("RemovedCheck", 2);
+            Invoke("RemovedCheck", 2.1f);
             Debug.Log("true");
             score += 1;
             Invoke("ShowCard", 2);
@@ -66,9 +70,10 @@ public class GameManager : MonoBehaviour
     {
         if (!waiting)
         {
+            waiting = true;
             cross.SetActive(true);
             MainText.SetActive(false);
-            Invoke("RemovedCross", 2);
+            Invoke("RemovedCross", 2.1f);
             Debug.Log("false");
             Invoke("ShowCard", 2);
         }
@@ -139,12 +144,14 @@ public class GameManager : MonoBehaviour
 
     private void RemovedCheck()
     {
+        waiting = false;
         check.gameObject.SetActive(false);
         MainText.SetActive(true);
     }
 
     private void RemovedCross()
     {
+        waiting = false;
         cross.gameObject.SetActive(false);
         MainText.SetActive(true);
     }
@@ -159,13 +166,11 @@ public class GameManager : MonoBehaviour
 
     private void AddCard()
     {
-        for(int x = 0; x < 10; x++)
-        {
-            AddProfitCard(ProfitContainer.description[x], ProfitContainer.imageRaw[x]);
-        }
+        
         for (int x = 0; x < 10; x++)
         {
             AddGrowthCard(GrowthContainer.description[x], GrowthContainer.imageRaw[x]);
+            AddProfitCard(ProfitContainer.description[x], ProfitContainer.imageRaw[x]);
         }
     }
 }

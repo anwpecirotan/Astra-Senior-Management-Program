@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 275782152}
   - component: {fileID: 275782151}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [KOMIKAX_ SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [KOMTITP_ SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,10 +1389,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 90
+  m_text: 95
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ca956b64c40772f44aa599b4206e0161, type: 2}
-  m_sharedMaterial: {fileID: -4529510215711051716, guid: ca956b64c40772f44aa599b4206e0161,
+  m_fontAsset: {fileID: 11400000, guid: 9024520ea842f5e4bbbd210e75ecbd55, type: 2}
+  m_sharedMaterial: {fileID: 6928883551658393546, guid: 9024520ea842f5e4bbbd210e75ecbd55,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

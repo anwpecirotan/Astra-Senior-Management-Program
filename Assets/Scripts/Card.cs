@@ -30,41 +30,47 @@ public class Card : MonoBehaviour
 
     public void InduceRight()
     {
-        if(tagId == "Profit")
+        if (!GameManager.instance.waiting)
         {
-            gameManager.AnswerTrue();
-        }
-        else
-        {
-            gameManager.AnswerFalse();
+            if (tagId == "Profit")
+            {
+                gameManager.AnswerTrue();
+            }
+            else
+            {
+                gameManager.AnswerFalse();
+            }
         }
         //anim.SetTrigger("Right");
     }
 
     public void InduceLeft()
     {
-        if (tagId == "Growth")
+        if (!GameManager.instance.waiting)
         {
-            gameManager.AnswerTrue();
-        }
-        else
-        {
-            gameManager.AnswerFalse();
+            if (tagId == "Growth")
+            {
+                gameManager.AnswerTrue();
+            }
+            else
+            {
+                gameManager.AnswerFalse();
+            }
         }
         //anim.SetTrigger("Left");
     }
 
-    public void InduceUp()
-    {
-        if (tagId == "Financing")
-        {
-            gameManager.AnswerTrue();
-        }
-        else
-        {
-            gameManager.AnswerFalse();
-        }
-        anim.SetTrigger("Up");
-    }
+    //public void InduceUp()
+    //{
+    //    if (tagId == "Financing")
+    //    {
+    //        gameManager.AnswerTrue();
+    //    }
+    //    else
+    //    {
+    //        gameManager.AnswerFalse();
+    //    }
+    //    anim.SetTrigger("Up");
+    //}
 
 }
