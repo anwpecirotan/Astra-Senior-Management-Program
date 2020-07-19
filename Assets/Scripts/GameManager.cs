@@ -8,14 +8,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject cardTemplate;
-    public List<GameObject> cardList;
+    public List<Card> cardList;
     public Card card;
     public Text title;
     public TextMeshProUGUI description;
-    public Image image;
+    public RawImage image;
     public Card cardBack;
-    public Text titleBack, descriptionBack;
-    public Image imageBack;
+    public string titleBack, descriptionBack;
+    public Texture2D imageBack;
     public GameObject check, cross;
     public GameObject MainText;
     public GameObject endPanel;
@@ -41,17 +41,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AddCard();
         NextCard();
         ShowCard();
         score = 0;
         Time.timeScale = 1;
         waiting = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void AnswerTrue()
@@ -84,10 +79,11 @@ public class GameManager : MonoBehaviour
         if (cardBack != null)
         {
             card.tagId = cardBack.tagId;
-            title.text = titleBack.text;
-            description.text = descriptionBack.text;
-            image.color = imageBack.color;
-            image.sprite = imageBack.sprite;
+            //title.text = titleBack.text;
+            description.text = descriptionBack;
+            //Sprite curSprite = Sprite.Create(imageBack, new Rect(0, 0, imageBack.width, imageBack.height), new Vector2(0.5f, 0.5f));
+            //image.sprite = Sprite.Create(imageBack, new Rect(0, 0, imageBack.width, imageBack.height), new Vector2(0.5f, 0.5f));
+            image.texture = imageBack;
             NextCard();
         }
         else
@@ -102,13 +98,13 @@ public class GameManager : MonoBehaviour
         if (cardList.Count != 0)
         {
             int index = Random.Range(0, cardList.ToArray().Length);
-            GameObject nextCardObject = cardList[index];
-            Card nextCard = nextCardObject.GetComponent<Card>();
+            Card nextCardObject = cardList[index];
+            Card nextCard = nextCardObject;
             cardBack.tagId = nextCard.tagId;
-            titleBack.text = nextCard.title.text;
-            descriptionBack.text = nextCard.description.text;
-            imageBack.color = nextCard.image.color;
-            imageBack.sprite = nextCard.image.sprite;
+            //titleBack.text = nextCard.title.text;
+            descriptionBack = nextCard.descriptionString;
+            imageBack = nextCard.image;
+            //imageBack.overrideSprite = Sprite.Create(nextCard.image, new Rect(0, 0, nextCard.image.width, nextCard.image.height), new Vector2(0.5f, 0.5f));
             cardList.Remove(cardList[index]);
         }
         else
@@ -117,25 +113,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddProfitCard(string description,Image image)
+    public void AddProfitCard(string description,Texture2D image)
     {
-        Card currCard = cardTemplate.GetComponent<Card>();
+        Card currCard = new Card();
         //currCard.title.text = title;
-        currCard.description.text = description;
+        currCard.descriptionString = description;
         currCard.image = image;
-        cardTemplate.tag = "Profit";
-        cardList.Add(cardTemplate);
+        //currCard.image.overrideSprite = Sprite.Create(image, new Rect(0,0,image.width,image.height),new Vector2(0.5f, 0.5f));
+        currCard.tagId = "Profit";
+        cardList.Add(currCard);
         //Instantiate(cardTemplate, card.transform.position, Quaternion.identity);
     }
 
-    public void AddGrowthCard(string description, Image image)
+    public void AddGrowthCard(string description, Texture2D image)
     {
-        Card currCard = cardTemplate.GetComponent<Card>();
+        Card currCard = new Card();
         //currCard.title.text = title;
-        currCard.description.text = description;
+        currCard.descriptionString = description;
         currCard.image = image;
-        cardTemplate.tag = "Growth";
-        cardList.Add(cardTemplate);
+        //currCard.image.overrideSprite = Sprite.Create(image, new Rect(0, 0, image.width, image.height), new Vector2(0.5f, 0.5f));
+        currCard.tagId = "Growth";
+        cardList.Add(currCard);
         //Instantiate(cardTemplate, card.transform.position, Quaternion.identity);
     }
 
@@ -157,5 +155,17 @@ public class GameManager : MonoBehaviour
         //endPanel.SetActive(true);
         //scoreText.text = scoreText.text + score;
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    private void AddCard()
+    {
+        for(int x = 0; x < 10; x++)
+        {
+            AddProfitCard(ProfitContainer.description[x], ProfitContainer.imageRaw[x]);
+        }
+        for (int x = 0; x < 10; x++)
+        {
+            AddGrowthCard(GrowthContainer.description[x], GrowthContainer.imageRaw[x]);
+        }
     }
 }

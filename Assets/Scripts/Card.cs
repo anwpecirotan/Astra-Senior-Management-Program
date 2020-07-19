@@ -8,8 +8,9 @@ public class Card : MonoBehaviour
     public string tagId;
     public GameManager gameManager;
     public bool isMouseOver = false;
+    public string descriptionString;
     public Text title, description;
-    public Image image;
+    public Texture2D image;
     private Animator anim;
 
     private void Start()

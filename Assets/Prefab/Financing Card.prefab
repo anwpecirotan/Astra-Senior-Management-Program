@@ -76,7 +76,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "g\u200B"
+  m_Text: 
 --- !u!1 &4154604715526185089
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 7294204189276321586}
   m_Layer: 0
   m_Name: Financing Card
-  m_TagString: Profit
+  m_TagString: Growth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,9 +353,10 @@ MonoBehaviour:
   tagId: Profit
   gameManager: {fileID: 0}
   isMouseOver: 0
+  descriptionString: 
   title: {fileID: 4700201548246249007}
   description: {fileID: 2654447305547048817}
-  image: {fileID: 8019014822365525214}
+  image: {fileID: 0}
 --- !u!61 &7294204189276321586
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -440,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9150943, g: 0.27989638, b: 0.056114297, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
