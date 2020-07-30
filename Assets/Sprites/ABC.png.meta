@@ -1,43 +1,34 @@
 fileFormatVersion: 2
-guid: 66f7473f2495de549a329269b86aac50
+guid: 2e5794c26b005b440993505250d447a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4016213757969924827
-    second: Login Spritesheet 2_0
+      213: -7378506952429663577
+    second: ABC_0
   - first:
-      213: -9047181890604200693
-    second: Login Spritesheet 2_1
+      213: -7231416751992207153
+    second: ABC_1
   - first:
-      213: -3182072308048073926
-    second: Login Spritesheet 2_2
+      213: -8262482456276388999
+    second: ABC_2
   - first:
-      213: 9012507652212196817
-    second: Login Spritesheet 2_3
+      213: -8864369965760577199
+    second: ABC_3
   - first:
-      213: -4799438896710208143
-    second: Login Spritesheet 2_4
+      213: 7110309147498555253
+    second: ABC_4
   - first:
-      213: -3756667675732795444
-    second: Login Spritesheet 2_5
+      213: 4735352455924472507
+    second: ABC_5
   - first:
-      213: 2313166685285009537
-    second: Login Spritesheet 2_6
+      213: -2137332351820405095
+    second: ABC_6
   - first:
-      213: 5166469810485383966
-    second: Login Spritesheet 2_7
+      213: 3827290000817888557
+    second: ABC_7
   - first:
-      213: 6734092486046362310
-    second: Login Spritesheet 2_8
-  - first:
-      213: 1361609385800960148
-    second: Login Spritesheet 2_9
-  - first:
-      213: 1062019663797150214
-    second: Login Spritesheet 2_10
-  - first:
-      213: -4379547058659360083
-    second: Login Spritesheet 2_11
+      213: -1525832167041789886
+    second: ABC_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -146,253 +137,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Login Spritesheet 2_0
+      name: ABC_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 776
-        width: 292
-        height: 118
+        x: 28
+        y: 271
+        width: 129
+        height: 434
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26307fb19a77a444b80b69f20a7c3bce
-      internalID: -4016213757969924827
+      spriteID: 9381abc485ccd7a4190cf457107ca055
+      internalID: -7378506952429663577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_1
+      name: ABC_1
       rect:
         serializedVersion: 2
-        x: 375
-        y: 795
-        width: 303
-        height: 41
+        x: 181
+        y: 286
+        width: 224
+        height: 467
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adcc32ec12f6f1143ade143ee37b1326
-      internalID: -9047181890604200693
+      spriteID: 1a3530c0f35037a4da0592b8830a164b
+      internalID: -7231416751992207153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_2
+      name: ABC_2
       rect:
         serializedVersion: 2
-        x: 710
-        y: 792
-        width: 40
-        height: 40
+        x: 473
+        y: 278
+        width: 126
+        height: 434
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d46dd6be98c14384195fd8868425ece3
-      internalID: -3182072308048073926
+      spriteID: b4120eef90afcf04db6660899ef68a67
+      internalID: -8262482456276388999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_3
+      name: ABC_3
       rect:
         serializedVersion: 2
-        x: 926
-        y: 759
-        width: 64
-        height: 64
+        x: 626
+        y: 293
+        width: 223
+        height: 468
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61ba5bb57820ec042bf15241afdd0c37
-      internalID: 9012507652212196817
+      spriteID: 39e20f0ccbe53e246a8a1d5565647e0f
+      internalID: -8864369965760577199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_4
+      name: ABC_4
       rect:
         serializedVersion: 2
-        x: 1021
-        y: 758
-        width: 64
-        height: 64
+        x: 875
+        y: 272
+        width: 145
+        height: 430
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50680f9a0d87d744bdf92e85818e48d
-      internalID: -4799438896710208143
+      spriteID: e34ad297c5ddf69408de75ddb3a273d1
+      internalID: 7110309147498555253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_5
+      name: ABC_5
       rect:
         serializedVersion: 2
-        x: 1153
-        y: 748
-        width: 64
-        height: 64
+        x: 1031
+        y: 291
+        width: 225
+        height: 473
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b823a031f1ef80748b4f4a1053f9baa3
-      internalID: -3756667675732795444
+      spriteID: 85521a74215a29740ba0f4fff9811cd8
+      internalID: 4735352455924472507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_6
+      name: ABC_6
       rect:
         serializedVersion: 2
-        x: 1257
-        y: 656
-        width: 243
-        height: 244
+        x: 36
+        y: 84
+        width: 373
+        height: 57
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c4280070f6551042b985fe87cf48dea
-      internalID: 2313166685285009537
+      spriteID: f90a5c2fa0b898c4d83f59878882deb3
+      internalID: -2137332351820405095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_7
+      name: ABC_7
       rect:
         serializedVersion: 2
-        x: 69
-        y: 672
-        width: 161
-        height: 68
+        x: 451
+        y: 74
+        width: 373
+        height: 57
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 114a894afb9319b4cb0a6871148e8271
-      internalID: 5166469810485383966
+      spriteID: 129016eb104c38e4aaa4fa627d34afdc
+      internalID: 3827290000817888557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Login Spritesheet 2_8
+      name: ABC_8
       rect:
         serializedVersion: 2
-        x: 375
-        y: 661
-        width: 303
-        height: 45
+        x: 868
+        y: 49
+        width: 373
+        height: 57
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9513a77ddea5304469402da1b6c753a3
-      internalID: 6734092486046362310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Login Spritesheet 2_9
-      rect:
-        serializedVersion: 2
-        x: 965
-        y: 678
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0fb76150c130064f95a8e812ccda64a
-      internalID: 1361609385800960148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Login Spritesheet 2_10
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 26
-        width: 846
-        height: 610
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 345141d6f0a19ef409dc61e173aa1203
-      internalID: 1062019663797150214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Login Spritesheet 2_11
-      rect:
-        serializedVersion: 2
-        x: 971
-        y: 4
-        width: 516
-        height: 651
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e31d8a4f262b4dc4d8fd37c967c202c5
-      internalID: -4379547058659360083
+      spriteID: d46d93fcb5c328f4093de75cdd616043
+      internalID: -1525832167041789886
       vertices: []
       indices: 
       edges: []
