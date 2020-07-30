@@ -9,7 +9,7 @@ public class NameCompHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nameText.text = TemplateData.CompanyName + " Company";
+        nameText.text = TemplateData.CompanyName.ToUpper() + " COMPANY";
     }
 
     

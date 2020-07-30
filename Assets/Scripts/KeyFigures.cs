@@ -37,17 +37,17 @@ public class KeyFigures : MonoBehaviour
 
     private void Update()
     {
-        FixedAssetsText.text = FixedAssets + "$";
-        NetWorkingCapital_NWCText.text = NetWorkingCapital_NWC + "$";
-        CurrentAssetsText.text = CurrentAssets + "$";
-        CurrentLiabilities_LessSTLoansText.text = CurrentLiabilities_LessSTLoans + "$";
-        OperatingAssetsText.text = OperatingAssets + "$";
-        NWCText.text = NWC + "$";
-        FAText.text = FA + "$";
-        InvestedCapital_CapitalEmployedText.text = InvestedCapital_CapitalEmployed + "$";
-        STLoansText.text = STLoans + "$";
-        LTLoansText.text = LTLoans + "$";
-        OwnersEquityText.text = OwnersEquity + "$";
+        FixedAssetsText.text = FixedAssets.ToString("n0").Replace(',', '.') + "";
+        NetWorkingCapital_NWCText.text = NetWorkingCapital_NWC.ToString("n0").Replace(',', '.') + "";
+        CurrentAssetsText.text = CurrentAssets.ToString("n0").Replace(',', '.') + "";
+        CurrentLiabilities_LessSTLoansText.text = CurrentLiabilities_LessSTLoans.ToString("n0").Replace(',', '.') + "";
+        OperatingAssetsText.text = OperatingAssets.ToString("n0").Replace(',', '.') + "";
+        NWCText.text = NWC.ToString("n0").Replace(',', '.') + "";
+        FAText.text = FA.ToString("n0").Replace(',', '.') + "";
+        InvestedCapital_CapitalEmployedText.text = InvestedCapital_CapitalEmployed.ToString("n0").Replace(',', '.') + "";
+        STLoansText.text = STLoans.ToString("n0").Replace(',', '.') + "";
+        LTLoansText.text = LTLoans.ToString("n0").Replace(',', '.') + "";
+        OwnersEquityText.text = OwnersEquity.ToString("n0").Replace(',', '.') + "";
 
         ROEText.text = System.Math.Round(ROE * 100, 2) + "%";
         debtOfEquityRatioText.text = System.Math.Round(debtOfEquityRatio * 100, 2) + "%";

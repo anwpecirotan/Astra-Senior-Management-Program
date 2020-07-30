@@ -36,15 +36,15 @@ public class BusinessValueAndShareholderValue : MonoBehaviour
         double BookValueOfEquity = KeyFigures.OwnersEquity;
         double ShareholdersValueAdded = ValueToShareholders - BookValueOfEquity;
 
-        CummulativePVofNetCashFlowsText.text = (int)CummulativePVofNetCashFlows + "$";
-        PVofContinuingValueText.text = (int)PVofContinuingValue + "$";
-        BusinessValueText.text = (int)BusinessValue + "$";
-        AddNonOperatingAssetsText.text = (int)AddNonOperatingAssets + "$";
-        CorporateValueText.text = (int)CorporateValue + "$";
-        LessMarketValueOfDebtsText.text = (int)LessMarketValueOfDebts + "$";
-        ValueToShareholdersText.text = (int)ValueToShareholders + "$";
-        BookValueOfEquityText.text = (int)BookValueOfEquity + "$";
-        ShareholdersValueAddedText.text = (int)ShareholdersValueAdded + "$";
+        CummulativePVofNetCashFlowsText.text = CummulativePVofNetCashFlows.ToString("n0").Replace(',', '.') + "";
+        PVofContinuingValueText.text = PVofContinuingValue.ToString("n0").Replace(',', '.') + "";
+        BusinessValueText.text = BusinessValue.ToString("n0").Replace(',', '.') + "";
+        AddNonOperatingAssetsText.text = AddNonOperatingAssets.ToString("n0").Replace(',', '.') + "";
+        CorporateValueText.text = CorporateValue.ToString("n0").Replace(',', '.') + "";
+        LessMarketValueOfDebtsText.text = LessMarketValueOfDebts.ToString("n0").Replace(',', '.') + "";
+        ValueToShareholdersText.text = ValueToShareholders.ToString("n0").Replace(',', '.') + "";
+        BookValueOfEquityText.text = BookValueOfEquity.ToString("n0").Replace(',', '.') + "";
+        ShareholdersValueAddedText.text = ShareholdersValueAdded.ToString("n0").Replace(',', '.') + "";
         shareholderValueAdded = ShareholdersValueAdded;
     }
 }

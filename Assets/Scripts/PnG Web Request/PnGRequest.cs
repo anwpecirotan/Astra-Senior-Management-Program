@@ -13,6 +13,8 @@ public class PnGRequest : MonoBehaviour
     public TextMeshProUGUI feedbackMessage;
     public ProfitContainer pContainer;
     public GrowthContainer gContainer;
+
+    public GameObject userErrorPanel;
     private bool pReady, gReady;
     public Button button;
     private readonly string baseWebURL = "http://dev.accelist.com:9192/";
@@ -56,6 +58,10 @@ public class PnGRequest : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        //request.SetRequestHeader("Access-Control-Allow-Credentials", "true");
+        //request.SetRequestHeader("Access-Control-Allow-Headers", "Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time");
+        //request.SetRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        request.SetRequestHeader("Access-Control-Allow-Origin", "*");
         feedbackMessage.text = "Loading...";
 
         yield return request.SendWebRequest();
@@ -63,6 +69,7 @@ public class PnGRequest : MonoBehaviour
         if (request.isNetworkError || request.isHttpError)
         {
             feedbackMessage.text = "Invalid Username or Password";
+            userErrorPanel.SetActive(true);
         }
         else
         {
@@ -84,8 +91,9 @@ public class PnGRequest : MonoBehaviour
 
     public IEnumerator GetProfitInisiative()
     {
-        string webURL = baseWebURL + "api/v2/game/get-profit"+ "?UserId=" + user_cont + "&password=" + pass_cont; 
+        string webURL = baseWebURL + "api/v3/game2/get-profit2";// + "?UserId=" + user_cont + "&password=" + pass_cont; 
         UnityWebRequest requestProfitInisiative = UnityWebRequest.Get(webURL);
+        requestProfitInisiative.SetRequestHeader("Authorization", "Bearer " + token);
         yield return requestProfitInisiative.SendWebRequest();
 
         if (requestProfitInisiative.isNetworkError || requestProfitInisiative.isHttpError)
@@ -123,8 +131,9 @@ public class PnGRequest : MonoBehaviour
 
     public IEnumerator GetGrowthInisiative()
     {
-        string webURL = baseWebURL + "api/v2/game/get-growth" + "?UserId=" + user_cont + "&password=" + pass_cont;
+        string webURL = baseWebURL + "api/v3/game2/get-growth2";// + "?UserId=" + user_cont + "&password=" + pass_cont;
         UnityWebRequest requestGrowthInisiative = UnityWebRequest.Get(webURL);
+        requestGrowthInisiative.SetRequestHeader("Authorization", "Bearer " + token);
         yield return requestGrowthInisiative.SendWebRequest();
 
         if (requestGrowthInisiative.isNetworkError || requestGrowthInisiative.isHttpError)

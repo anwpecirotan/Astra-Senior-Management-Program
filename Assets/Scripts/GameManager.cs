@@ -16,13 +16,18 @@ public class GameManager : MonoBehaviour
     public Card cardBack;
     public string titleBack, descriptionBack;
     public Texture2D imageBack;
-    public GameObject check, cross;
+    public GameObject check, cross, timeoutSprite;
     public GameObject MainText;
     public GameObject endPanel;
     public Text scoreText;
     public bool waiting;
     public static int score;
     public int nextSceneIndex;
+
+    public TextMeshProUGUI timeText;
+    private float time;
+    private bool timeOn , isTimeOut;
+    public AudioSource trueSound, wrongSound;
 
     public static GameManager instance = null;
 
@@ -41,6 +46,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isTimeOut = false;
+        timeOn = true;
+        time = 15.2f;
         cardList = new List<Card>();
         waiting = false;
         AddCard();
@@ -52,10 +60,27 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void Update()
+    {
+        timeText.text = ((int)time).ToString();
+        if (timeOn)
+        {
+            time -= Time.deltaTime;
+            if (time <= 0)
+            {
+                isTimeOut = true;
+                AnswerFalse();
+            }
+        }
+    }
+
     public void AnswerTrue()
     {
         if (!waiting)
         {
+            timeOn = false;
+            time = 15.2f;
+            trueSound.Play();
             waiting = true;
             check.SetActive(true);
             MainText.SetActive(false);
@@ -70,8 +95,15 @@ public class GameManager : MonoBehaviour
     {
         if (!waiting)
         {
+            timeOn = false;
+            time = 15.2f;
+            wrongSound.Play();
             waiting = true;
-            cross.SetActive(true);
+            if (isTimeOut)
+                timeoutSprite.SetActive(true);
+            else
+                cross.SetActive(true);
+            isTimeOut = false;
             MainText.SetActive(false);
             Invoke("RemovedCross", 2.1f);
             Debug.Log("false");
@@ -144,6 +176,7 @@ public class GameManager : MonoBehaviour
 
     private void RemovedCheck()
     {
+        timeOn = true;
         waiting = false;
         check.gameObject.SetActive(false);
         MainText.SetActive(true);
@@ -151,8 +184,10 @@ public class GameManager : MonoBehaviour
 
     private void RemovedCross()
     {
+        timeOn = true;
         waiting = false;
         cross.gameObject.SetActive(false);
+        timeoutSprite.gameObject.SetActive(false);
         MainText.SetActive(true);
     }
 

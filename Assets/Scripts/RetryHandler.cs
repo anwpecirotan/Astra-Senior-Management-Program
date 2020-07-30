@@ -1,18 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RetryHandler : MonoBehaviour
 {
-    public GameObject retryPanel;
+    //public GameObject retryPanel;
+    //public GameObject retryButton;
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("RetryActive", 2f);
+        Invoke("LoadSceneScore", 5f);
     }
 
-    private void RetryActive()
+    //public void RetryActive()
+    //{
+    //    retryPanel.SetActive(true);
+    //    retryButton.SetActive(false);
+    //}
+
+    //public void RetryClose()
+    //{
+    //    retryPanel.SetActive(false);
+    //    retryButton.SetActive(true);
+    //}
+
+    private void LoadSceneScore()
     {
-        retryPanel.SetActive(true);
+        SceneManager.LoadScene(5);
     }
 }

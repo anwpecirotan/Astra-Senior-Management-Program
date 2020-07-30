@@ -13,6 +13,8 @@ public class ValueCreationRequest : MonoBehaviour
     public TMP_Dropdown templateListDropDown;
     public TextMeshProUGUI dropDownDefault;
 
+    public GameObject userErrorPanel, notPickPanel;
+
     public GameObject TemplateCanvas;
     //public Button button;
 
@@ -52,13 +54,18 @@ public class ValueCreationRequest : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        //request.SetRequestHeader("Access-Control-Allow-Credentials", "true");
+        //request.SetRequestHeader("Access-Control-Allow-Headers", "Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time");
+        //request.SetRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        request.SetRequestHeader("Access-Control-Allow-Origin", "*");
         feedbackMessage.text = "Loading...";
 
         yield return request.SendWebRequest();
         
         if (request.isNetworkError || request.isHttpError)
         {
-            feedbackMessage.text = "Invalid Username or Password";
+            feedbackMessage.text = request.error;
+            userErrorPanel.SetActive(true);
         }
         else
         {
@@ -70,7 +77,7 @@ public class ValueCreationRequest : MonoBehaviour
             employee_id = allToken["employee_id"];
             full_name = allToken["full_name"];
 
-        yield return user_cont;
+        yield return token;
         StartCoroutine(ShowAllTemplateList());
 
         }
@@ -80,8 +87,9 @@ public class ValueCreationRequest : MonoBehaviour
     public IEnumerator ShowAllTemplateList()
     {
         TemplateCanvas.SetActive(true);
-        string webURL = baseWebURL + "api/v2/game/get-value-creation?UserId="+ user_cont+"&password="+pass_cont;
+        string webURL = baseWebURL + "api/v3/game2/get-value-creation2";// + user_cont+"&password="+pass_cont;
         UnityWebRequest templateRequestList = UnityWebRequest.Get(webURL);
+        templateRequestList.SetRequestHeader("Authorization", "Bearer " + token);
         yield return templateRequestList.SendWebRequest();
 
         if (templateRequestList.isNetworkError || templateRequestList.isHttpError)
@@ -118,12 +126,15 @@ public class ValueCreationRequest : MonoBehaviour
         else
         {
             feedbackMessage.text = "Please Select Industry";
+            notPickPanel.SetActive(true);
         }
     }
     public IEnumerator PickTemplate(string templateName)
     {
-        string webURL = baseWebURL + "api/v2/game/get-valuecreation/"+templateName+"?UserId=" + user_cont + "&password=" + pass_cont;
+        //string webURL = baseWebURL + "api/v2/game/get-valuecreation/"+templateName+"?UserId=" + user_cont + "&password=" + pass_cont;
+        string webURL = baseWebURL + "api/v3/game2/get-valuecreation2/" + templateName;
         UnityWebRequest templateRequestList = UnityWebRequest.Get(webURL);
+        templateRequestList.SetRequestHeader("Authorization", "Bearer " + token);
         yield return templateRequestList.SendWebRequest();
         if (templateRequestList.isNetworkError || templateRequestList.isHttpError)
         {

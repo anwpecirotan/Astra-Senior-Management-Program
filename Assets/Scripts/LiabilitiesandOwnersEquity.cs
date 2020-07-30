@@ -81,38 +81,38 @@ public class LiabilitiesandOwnersEquity : MonoBehaviour
 
     private void Update()
     {
-        CashText.text = CurrentAssets.Cash + "$";
-        AccountsReceivableText.text = CurrentAssets.AccountsReceivable + "$";
-        InventoryText.text = CurrentAssets.Inventory + "$";
-        MiscellaneousCAText.text = CurrentAssets.MiscellaneousCA + "$";
-        ToCurrentAssetsText.text = CurrentAssets.ToCurrentAssets + "$";
+        CashText.text = CurrentAssets.Cash.ToString("n0").Replace(',', '.') + "";
+        AccountsReceivableText.text = CurrentAssets.AccountsReceivable.ToString("n0").Replace(',', '.') + "";
+        InventoryText.text = CurrentAssets.Inventory.ToString("n0").Replace(',', '.') + "";
+        MiscellaneousCAText.text = CurrentAssets.MiscellaneousCA.ToString("n0").Replace(',', '.') + "";
+        ToCurrentAssetsText.text = CurrentAssets.ToCurrentAssets.ToString("n0").Replace(',', '.') + "";
 
-        FixedAssets_NotFAText.text = CurrentAssets.FixedAssets_NotFA + "$";
-        totalAssetsText.text = TotalAssets.totalAssets + "$";
+        FixedAssets_NotFAText.text = CurrentAssets.FixedAssets_NotFA.ToString("n0").Replace(',', '.') + "";
+        totalAssetsText.text = TotalAssets.totalAssets.ToString("n0").Replace(',', '.') + "";
 
-        AccountsPayablesText.text = CurrentLiabilities_LessShorttermLoans.AccountsPayables + "$";
-        MiscellaneousCLText.text = CurrentLiabilities_LessShorttermLoans.MiscellaneousCL + "$";
-        TotalCLText.text = CurrentLiabilities_LessShorttermLoans.TotalCL + "$";
+        AccountsPayablesText.text = CurrentLiabilities_LessShorttermLoans.AccountsPayables.ToString("n0").Replace(',', '.') + "";
+        MiscellaneousCLText.text = CurrentLiabilities_LessShorttermLoans.MiscellaneousCL.ToString("n0").Replace(',', '.') + "";
+        TotalCLText.text = CurrentLiabilities_LessShorttermLoans.TotalCL.ToString("n0").Replace(',', '.') + "";
 
-        Short_termLoansText.text = Borrowing.Short_termLoans + "$";
-        Long_termLoansText.text = Borrowing.Long_termLoans + "$";
-        TotalBorrText.text = Borrowing.TotalBorr + "$";
+        Short_termLoansText.text = Borrowing.Short_termLoans.ToString("n0").Replace(',', '.') + "";
+        Long_termLoansText.text = Borrowing.Long_termLoans.ToString("n0").Replace(',', '.') + "";
+        TotalBorrText.text = Borrowing.TotalBorr.ToString("n0").Replace(',', '.') + "";
 
-        IssuedCapitalText.text = OwnersEquity.IssuedCapital + "$";
-        RetainedEarningsText.text = OwnersEquity.RetainedEarnings + "$";
-        TotalOEText.text = OwnersEquity.TotalOE + "$";
+        IssuedCapitalText.text = OwnersEquity.IssuedCapital.ToString("n0").Replace(',', '.') + "";
+        RetainedEarningsText.text = OwnersEquity.RetainedEarnings.ToString("n0").Replace(',', '.') + "";
+        TotalOEText.text = OwnersEquity.TotalOE.ToString("n0").Replace(',', '.') + "";
 
-        TotalLOEText.text = TotalLiabilitiesandOwnersEquity.TotalLOE + "$";
+        TotalLOEText.text = TotalLiabilitiesandOwnersEquity.TotalLOE.ToString("n0").Replace(',', '.') + "";
 
-        SalesText.text = ProfitandLossStatement.Sales + "$";
-        OperatingExpensesText.text = ProfitandLossStatement.OperatingExpenses + "$";
-        EBIT_EarningsBeforeInterestandTaxText.text = ProfitandLossStatement.EBIT_EarningsBeforeInterestandTax + "$";
-        InterestText.text = ProfitandLossStatement.Interest + "$";
-        EBT_EarningsBeforeTaxText.text = ProfitandLossStatement.EBT_EarningsBeforeTax + "$";
-        TaxText.text = ProfitandLossStatement.Tax + "$";
-        EAT_EarningsAfterTaxText.text = ProfitandLossStatement.EAT_EarningsAfterTax + "$";
-        DividendText.text = ProfitandLossStatement.Dividend + "$";
-        RE_RetainedEarningsText.text = ProfitandLossStatement.RE_RetainedEarnings + "$";
+        SalesText.text = ProfitandLossStatement.Sales.ToString("n0").Replace(',', '.') + "";
+        OperatingExpensesText.text = ProfitandLossStatement.OperatingExpenses.ToString("n0").Replace(',', '.') + "";
+        EBIT_EarningsBeforeInterestandTaxText.text = ProfitandLossStatement.EBIT_EarningsBeforeInterestandTax.ToString("n0").Replace(',', '.') + "";
+        InterestText.text = ProfitandLossStatement.Interest.ToString("n0").Replace(',', '.') + "";
+        EBT_EarningsBeforeTaxText.text = ProfitandLossStatement.EBT_EarningsBeforeTax.ToString("n0").Replace(',', '.') + "";
+        TaxText.text = ProfitandLossStatement.Tax.ToString("n0").Replace(',', '.') + "";
+        EAT_EarningsAfterTaxText.text = ProfitandLossStatement.EAT_EarningsAfterTax.ToString("n0").Replace(',', '.') + "";
+        DividendText.text = ProfitandLossStatement.Dividend.ToString("n0").Replace(',', '.') + "";
+        RE_RetainedEarningsText.text = ProfitandLossStatement.RE_RetainedEarnings.ToString("n0").Replace(',', '.') + "";
     }
 
     private void getData()

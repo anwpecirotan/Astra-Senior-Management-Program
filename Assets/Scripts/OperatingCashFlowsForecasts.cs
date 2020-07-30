@@ -61,7 +61,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         public class CashFlows
         {
-            public static double ForecastPeriodYear1 = Balance.ForecastPeriodYear1 - Balance.BaseFigures ;
+            public static double ForecastPeriodYear1 = Balance.BaseFigures - Balance.ForecastPeriodYear1;
             //public static double ForecastPeriodYear2 = Balance.ForecastPeriodYear1 - Balance.ForecastPeriodYear2;
             //public static double ForecastPeriodYear3 = Balance.ForecastPeriodYear2 - Balance.ForecastPeriodYear3;
             //public static double ForecastPeriodYear4 = Balance.ForecastPeriodYear3 - Balance.ForecastPeriodYear4;
@@ -83,7 +83,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         public class CashFlows
         {
-            public static double ForecastPeriodYear1 = Balance.ForecastPeriodYear1 - Balance.BaseFigures;
+            public static double ForecastPeriodYear1 = Balance.BaseFigures - Balance.ForecastPeriodYear1;
             //public static double ForecastPeriodYear2 = Balance.ForecastPeriodYear1 - Balance.ForecastPeriodYear2;
             //public static double ForecastPeriodYear3 = Balance.ForecastPeriodYear2 - Balance.ForecastPeriodYear3;
             //public static double ForecastPeriodYear4 = Balance.ForecastPeriodYear3 - Balance.ForecastPeriodYear4;
@@ -93,8 +93,8 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
     public class NetCashFlows_FreeCashFlows
     {
-        public static double ForecastPeriodYear1 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 - 
-                                                   CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1 -
+        public static double ForecastPeriodYear1 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 + 
+                                                   CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1 +
                                                    NetWorkingCapitalInvestments.CashFlows.ForecastPeriodYear1;
         //public static double ForecastPeriodYear2 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear2 +
         //                                           CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear2 +
@@ -181,7 +181,7 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         AssignBaseText();
         AssignFirstValue();
         AssignPeriodForecast();
-        CountStandard();
+        //CountStandard();
     }
 
     void Update()
@@ -208,14 +208,14 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
     private void AssignBaseText()
     {
-        BaseSalesText.text = (int)Operations.Sales.BaseFigures + "$";
-        BaseOperatingProfitText.text = (int)Operations.OperatingProfitMargin.BaseFigures + "$";
-        BaseCIBalanceText.text = (int)CapitalInvestments_FixedAssets.Balance.BaseFigures + "$";
-        BaseNWCBalanceText.text = (int)NetWorkingCapitalInvestments.Balance.BaseFigures + "$";
+        BaseSalesText.text = Operations.Sales.BaseFigures.ToString("n0").Replace(',', '.') + "";
+        BaseOperatingProfitText.text = Operations.OperatingProfitMargin.BaseFigures.ToString("n0").Replace(',', '.') + "";
+        BaseCIBalanceText.text = CapitalInvestments_FixedAssets.Balance.BaseFigures.ToString("n0").Replace(',', '.') + "";
+        BaseNWCBalanceText.text = NetWorkingCapitalInvestments.Balance.BaseFigures.ToString("n0").Replace(',', '.') + "";
         BasePresentValueText.text = System.Math.Round( NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures *100,2) + "%";
-        BaseCumulativeNCFText.text = System.Math.Round(NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures , 2) + "%";
+        BaseCumulativeNCFText.text = System.Math.Round(NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures , 2).ToString("n2").Replace(',', '.') + "";
         BaseContinuingValueText.text = System.Math.Round(NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures * 100, 2) + "%";
-        BasePVContinuingText.text = (int)NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures + "$";
+        BasePVContinuingText.text = NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures.ToString("n0").Replace(',', '.') + "";
     }
 
     private void AssignPeriodForecast()
@@ -225,8 +225,8 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         {
             if (x == ValueDrivers.PlanningPeriod_Years)
             {
-                BaseCumulativeNCFText.text = System.Math.Round(BaseCumulativeNCF, 2) + "$";
-                BasePVContinuingText.text = (int)(FirstPresentValue * FirstContinuingValue) + "$";
+                BaseCumulativeNCFText.text = System.Math.Round(BaseCumulativeNCF, 2) + "";
+                BasePVContinuingText.text = (int)(FirstPresentValue * FirstContinuingValue) + "";
                 NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures = FirstPresentValue * FirstContinuingValue;
                 EndPeriodNOPAT = FirstNOPAT;
             }
@@ -234,19 +234,19 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
             PeriodForecast.transform.localPosition = new Vector2(120 * x, 0);
             YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
             data.YearNumText.text = x.ToString();
-            data.SalesText.text = (int)FirstSales + "$";
-            data.OperatingProfitText.text = (int)FirstOperatingProfit + "$";
-            data.TaxText.text = (int)FirstTax + "$";
-            data.NOPATText.text = (int)FirstNOPAT + "$";
-            data.CIBalanceText.text = (int)FirstCIBalance + "$";
-            data.CICashFlowText.text = (int)FirstCICashFlow + "$";
-            data.NWCBalanceText.text = (int)FirstNWCBalance + "$";
-            data.NWCCashFlowText.text = (int)FirstNWCCashFlow + "$";
-            data.NCFText.text = (int)FirstFreeCashFlow + "$";
-            data.PresentValueText.text = System.Math.Round(FirstPresentValue,2) + "%";
-            data.CICashFlowOfNCFText.text = System.Math.Round(FirstPresentValueCashFlow,2) + "$";
-            data.ContinuingNOPATText.text = (int)FirstContinueNOPAT + "$";
-            data.ContinuingValueText.text = (int)FirstContinuingValue + "$";
+            data.SalesText.text = (FirstSales).ToString("n0").Replace(',','.') + "";
+            data.OperatingProfitText.text = FirstOperatingProfit.ToString("n0").Replace(',', '.') + "";
+            data.TaxText.text = FirstTax.ToString("n0").Replace(',', '.') + "";
+            data.NOPATText.text = FirstNOPAT.ToString("n0").Replace(',', '.') + "";
+            data.CIBalanceText.text = FirstCIBalance.ToString("n0").Replace(',', '.') + "";
+            data.CICashFlowText.text = FirstCICashFlow.ToString("n0").Replace(',', '.') + "";
+            data.NWCBalanceText.text = FirstNWCBalance.ToString("n0").Replace(',', '.') + "";
+            data.NWCCashFlowText.text = FirstNWCCashFlow.ToString("n0").Replace(',', '.') + "";
+            data.NCFText.text = FirstFreeCashFlow.ToString("n0").Replace(',', '.') + "";
+            data.PresentValueText.text = System.Math.Round(FirstPresentValue,3) + "";
+            data.CICashFlowOfNCFText.text = System.Math.Round(FirstPresentValueCashFlow,2) + "";
+            data.ContinuingNOPATText.text = FirstContinueNOPAT.ToString("n0").Replace(',', '.') + "";
+            data.ContinuingValueText.text = FirstContinuingValue.ToString("n0").Replace(',', '.') + "";
 
             if (x < ValueDrivers.PlanningPeriod_Years)
             {
@@ -256,11 +256,11 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
                 FirstNOPAT = (int)(FirstOperatingProfit - FirstTax);
                 int temp1 = FirstCIBalance;
                 FirstCIBalance = (int)(FirstSales * ValueDrivers.IncrementalFixedCapitalInvestment);
-                FirstCICashFlow = (int)(FirstCIBalance - temp1);
+                FirstCICashFlow = (int)(temp1 - FirstCIBalance);
                 temp1 = FirstNWCBalance;
                 FirstNWCBalance = (int)(FirstSales * ValueDrivers.IncrementalWorkingCapitalInvestment);
-                FirstNWCCashFlow = (int)(FirstNWCBalance - temp1);
-                FirstFreeCashFlow = (FirstNOPAT - FirstCICashFlow - FirstNWCCashFlow);
+                FirstNWCCashFlow = (int)(temp1 - FirstNWCBalance);
+                FirstFreeCashFlow = (FirstNOPAT + FirstCICashFlow + FirstNWCCashFlow);
                 FirstPresentValue = (FirstPresentValue / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
                 FirstPresentValueCashFlow = (FirstFreeCashFlow * FirstPresentValue);
                 BaseCumulativeNCF += FirstPresentValueCashFlow;
@@ -273,64 +273,64 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         }
     }
 
-    private void CountStandard()
-    {
-        int StdSales, StdOperatingProfit, StdTax, StdNOPAT, StdCIBalance, StdCICashFlow;
-        int StdNWCBalance, StdNWCCashFlow, StdContinueNOPAT;
-        double StdPresentValueCashFlow, StdPresentValue, StdFreeCashFlow, StdContinuingValue;
+    //private void CountStandard()
+    //{
+    //    int StdSales, StdOperatingProfit, StdTax, StdNOPAT, StdCIBalance, StdCICashFlow;
+    //    int StdNWCBalance, StdNWCCashFlow, StdContinueNOPAT;
+    //    double StdPresentValueCashFlow, StdPresentValue, StdFreeCashFlow, StdContinuingValue;
         
-        StdSales = (int)(LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales * (1 + (TemplateData.ValueDriver_SalesGrowthRate)));
-        StdOperatingProfit = (int)(StdSales * TemplateData.ValueDriver_OperatingProfitMargin);
-        StdTax = (int)(StdOperatingProfit * TemplateData.ValueDriver_CashTaxRate);
-        StdNOPAT = (int)(StdOperatingProfit - StdTax);
-        StdCIBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalFixedCapitalInvestment);
-        StdCICashFlow = (int)(StdCIBalance - KeyFigures.FixedAssets);
-        StdNWCBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment);
-        StdNWCCashFlow = (int)(StdNWCBalance - KeyFigures.NWC);
-        StdFreeCashFlow = StdNOPAT - StdCICashFlow - StdNWCCashFlow;
-        StdPresentValue = (1 / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
-        StdPresentValueCashFlow = (StdFreeCashFlow * StdPresentValue);
-        StdContinueNOPAT = StdNOPAT;
-        StdContinuingValue = (StdContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
+    //    StdSales = (int)(LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales * (1 + (TemplateData.ValueDriver_SalesGrowthRate)));
+    //    StdOperatingProfit = (int)(StdSales * TemplateData.ValueDriver_OperatingProfitMargin);
+    //    StdTax = (int)(StdOperatingProfit * TemplateData.ValueDriver_CashTaxRate);
+    //    StdNOPAT = (int)(StdOperatingProfit - StdTax);
+    //    StdCIBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalFixedCapitalInvestment);
+    //    StdCICashFlow = (int)(StdCIBalance - KeyFigures.FixedAssets);
+    //    StdNWCBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment);
+    //    StdNWCCashFlow = (int)(StdNWCBalance - KeyFigures.NWC);
+    //    StdFreeCashFlow = StdNOPAT - StdCICashFlow - StdNWCCashFlow;
+    //    StdPresentValue = (1 / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
+    //    StdPresentValueCashFlow = (StdFreeCashFlow * StdPresentValue);
+    //    StdContinueNOPAT = StdNOPAT;
+    //    StdContinuingValue = (StdContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
 
-        for (int x = 1; x <= ValueDrivers.PlanningPeriod_Years; x++)
-        {
-            //if (x == ValueDrivers.PlanningPeriod_Years)
-            //{
-            //    NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures = FirstPresentValue * FirstContinuingValue;
-            //    EndPeriodNOPAT = FirstNOPAT;
-            //}
-            //GameObject PeriodForecast = Instantiate(ForecastPeriodYear, changeable.transform);
-            //PeriodForecast.transform.localPosition = new Vector2(80 * x, 0);
-            //YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
+    //    for (int x = 1; x <= ValueDrivers.PlanningPeriod_Years; x++)
+    //    {
+    //        //if (x == ValueDrivers.PlanningPeriod_Years)
+    //        //{
+    //        //    NetCashFlows_FreeCashFlows.PVofContinuingValue.BaseFigures = FirstPresentValue * FirstContinuingValue;
+    //        //    EndPeriodNOPAT = FirstNOPAT;
+    //        //}
+    //        //GameObject PeriodForecast = Instantiate(ForecastPeriodYear, changeable.transform);
+    //        //PeriodForecast.transform.localPosition = new Vector2(80 * x, 0);
+    //        //YearsCashFlowData data = PeriodForecast.GetComponent<YearsCashFlowData>();
 
-            if (x < ValueDrivers.PlanningPeriod_Years)
-            {
-                StdSales = (int)(StdSales * (1 + TemplateData.ValueDriver_SalesGrowthRate));
-                StdOperatingProfit = (int)(StdSales * TemplateData.ValueDriver_OperatingProfitMargin);
-                StdTax = (int)(StdOperatingProfit * TemplateData.ValueDriver_CashTaxRate);
-                StdNOPAT = (int)(StdOperatingProfit - StdTax);
-                int temp1 = StdCIBalance;
-                StdCIBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalFixedCapitalInvestment);
-                StdCICashFlow = (int)(StdCIBalance - temp1);
-                temp1 = StdNWCBalance;
-                StdNWCBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment);
-                StdNWCCashFlow = (int)(StdNWCBalance - temp1);
-                StdFreeCashFlow = (StdNOPAT - StdCICashFlow - StdNWCCashFlow);
-                StdPresentValue = (StdPresentValue / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
-                StdPresentValueCashFlow = (StdFreeCashFlow * StdPresentValue);
-                StandardCumulativeNCF += StdPresentValueCashFlow;
-                StdContinueNOPAT = (StdNOPAT);
-                if (x != 4)
-                    StdContinuingValue = (StdContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
-                else if (x == 4)
-                    StdContinuingValue = ((double)StdContinueNOPAT * (1 + TemplateData.AverageEconomicGrowth) / (NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures - TemplateData.AverageEconomicGrowth));
-            }
-        }
+    //        if (x < ValueDrivers.PlanningPeriod_Years)
+    //        {
+    //            StdSales = (int)(StdSales * (1 + TemplateData.ValueDriver_SalesGrowthRate));
+    //            StdOperatingProfit = (int)(StdSales * TemplateData.ValueDriver_OperatingProfitMargin);
+    //            StdTax = (int)(StdOperatingProfit * TemplateData.ValueDriver_CashTaxRate);
+    //            StdNOPAT = (int)(StdOperatingProfit - StdTax);
+    //            int temp1 = StdCIBalance;
+    //            StdCIBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalFixedCapitalInvestment);
+    //            StdCICashFlow = (int)(StdCIBalance - temp1);
+    //            temp1 = StdNWCBalance;
+    //            StdNWCBalance = (int)(StdSales * TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment);
+    //            StdNWCCashFlow = (int)(StdNWCBalance - temp1);
+    //            StdFreeCashFlow = (StdNOPAT - StdCICashFlow - StdNWCCashFlow);
+    //            StdPresentValue = (StdPresentValue / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures));
+    //            StdPresentValueCashFlow = (StdFreeCashFlow * StdPresentValue);
+    //            StandardCumulativeNCF += StdPresentValueCashFlow;
+    //            StdContinueNOPAT = (StdNOPAT);
+    //            if (x != 4)
+    //                StdContinuingValue = (StdContinueNOPAT / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures);
+    //            else if (x == 4)
+    //                StdContinuingValue = ((double)StdContinueNOPAT * (1 + TemplateData.AverageEconomicGrowth) / (NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures - TemplateData.AverageEconomicGrowth));
+    //        }
+    //    }
 
-        StandardCumulativeNCF += StdContinuingValue * StdPresentValue;
-        StandardCumulativeNCF -= LiabilitiesandOwnersEquity.Borrowing.TotalBorr;
-        StandardCumulativeNCF -= KeyFigures.OwnersEquity;
-        StandardCumulativeNCF += 272;
-    }
+    //    StandardCumulativeNCF += StdContinuingValue * StdPresentValue;
+    //    StandardCumulativeNCF -= LiabilitiesandOwnersEquity.Borrowing.TotalBorr;
+    //    StandardCumulativeNCF -= KeyFigures.OwnersEquity;
+    //    StandardCumulativeNCF += 272;
+    //}
 }

@@ -24,4 +24,9 @@ public class BoundariesData : MonoBehaviour
         }
         return currentWACC;
     }
+
+    private void Update()
+    {
+        WACC = ValueDrivers.SalesGrowthRate > Ideal_Sales_Growth_Rate ? WACC_Count() : WACC_Baseline;
+    }
 }
