@@ -15,12 +15,14 @@ public class ValueCreationRequest : MonoBehaviour
 
     public GameObject userErrorPanel, notPickPanel;
 
-    public GameObject TemplateCanvas;
+    public GameObject TemplateCanvas , oldCanvas;
     //public Button button;
 
     public containerValueCreation containerVC;
 
     public TextMeshProUGUI feedbackMessage;
+
+    public AudioSource loginSound;
 
     private readonly string baseWebURL = "http://dev.accelist.com:9192/";
 
@@ -87,6 +89,7 @@ public class ValueCreationRequest : MonoBehaviour
     public IEnumerator ShowAllTemplateList()
     {
         TemplateCanvas.SetActive(true);
+        oldCanvas.SetActive(false);
         string webURL = baseWebURL + "api/v3/game2/get-value-creation2";// + user_cont+"&password="+pass_cont;
         UnityWebRequest templateRequestList = UnityWebRequest.Get(webURL);
         templateRequestList.SetRequestHeader("Authorization", "Bearer " + token);
@@ -143,6 +146,7 @@ public class ValueCreationRequest : MonoBehaviour
         }
         else
         {
+            //loginSound.Play();
             string jsonRaw = templateRequestList.downloadHandler.text;
 
             jsonRaw = jsonRaw.Substring(1, jsonRaw.Length - 2);

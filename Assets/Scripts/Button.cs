@@ -14,4 +14,14 @@ public class Button : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void DelayedLoadSceneNumber()
+    {
+        Invoke("LoadFirstScene",2f);
+    }
+
+    private void LoadFirstScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

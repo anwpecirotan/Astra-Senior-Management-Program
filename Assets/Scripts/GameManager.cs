@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             card.tagId = cardBack.tagId;
             //title.text = titleBack.text;
-            description.text = descriptionBack;
+            description.text = descriptionBack.ToUpper();
             //Sprite curSprite = Sprite.Create(imageBack, new Rect(0, 0, imageBack.width, imageBack.height), new Vector2(0.5f, 0.5f));
             //image.sprite = Sprite.Create(imageBack, new Rect(0, 0, imageBack.width, imageBack.height), new Vector2(0.5f, 0.5f));
             image.texture = imageBack;
