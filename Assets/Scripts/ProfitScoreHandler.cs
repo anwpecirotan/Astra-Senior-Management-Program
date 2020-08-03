@@ -17,11 +17,13 @@ public class ProfitScoreHandler : MonoBehaviour
         {
             imgA.SetActive(false);
             imgC.SetActive(true);
+            descriptionText.text = "Maaf, Anda hanya menjawab " + GameManager.score + ". pernyataan dengan tepat dari 20 inisiatif yang diberikan.";
         }
         else if(GameManager.score < 85)
         {
             imgA.SetActive(false);
             imgB.SetActive(true);
+            descriptionText.text = "Sayang sekali, Anda menjawab " + GameManager.score + ". pernyataan dengan tepat dari 20 inisiatif yang diberikan.";
         }
     }
 
