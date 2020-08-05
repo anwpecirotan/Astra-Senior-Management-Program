@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject cardTemplate;
-    private List<Card> cardList;
+    public List<Card> cardList;
     public Card card;
     public Text title;
     public TextMeshProUGUI description;
@@ -142,7 +142,8 @@ public class GameManager : MonoBehaviour
             descriptionBack = nextCard.descriptionString;
             imageBack = nextCard.image;
             //imageBack.overrideSprite = Sprite.Create(nextCard.image, new Rect(0, 0, nextCard.image.width, nextCard.image.height), new Vector2(0.5f, 0.5f));
-            cardList.Remove(cardList[index]);
+            //RemoveCard(nextCard.id);
+            cardList.RemoveAt(index);
         }
         else
         {
@@ -150,10 +151,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddProfitCard(string description,Texture2D image)
+    public void AddProfitCard(string id,string description,Texture2D image)
     {
         Card currCard = new Card();
         //currCard.title.text = title;
+        currCard.id = id;
         currCard.descriptionString = description;
         currCard.image = image;
         //currCard.image.overrideSprite = Sprite.Create(image, new Rect(0,0,image.width,image.height),new Vector2(0.5f, 0.5f));
@@ -162,10 +164,11 @@ public class GameManager : MonoBehaviour
         //Instantiate(cardTemplate, card.transform.position, Quaternion.identity);
     }
 
-    public void AddGrowthCard(string description, Texture2D image)
+    public void AddGrowthCard(string id,string description, Texture2D image)
     {
         Card currCard = new Card();
         //currCard.title.text = title;
+        currCard.id = id;
         currCard.descriptionString = description;
         currCard.image = image;
         //currCard.image.overrideSprite = Sprite.Create(image, new Rect(0, 0, image.width, image.height), new Vector2(0.5f, 0.5f));
@@ -204,8 +207,19 @@ public class GameManager : MonoBehaviour
         
         for (int x = 0; x < 10; x++)
         {
-            AddGrowthCard(GrowthContainer.description[x], GrowthContainer.imageRaw[x]);
-            AddProfitCard(ProfitContainer.description[x], ProfitContainer.imageRaw[x]);
+            AddGrowthCard(GrowthContainer.initiativeId[x], GrowthContainer.description[x], GrowthContainer.imageRaw[x]);
+            AddProfitCard(ProfitContainer.initiativeId[x], ProfitContainer.description[x], ProfitContainer.imageRaw[x]);
+        }
+    }
+
+    private void RemoveCard(string id)
+    {
+        foreach(Card card in cardList)
+        {
+            if(card.id == id)
+            {
+                cardList.Remove(card);
+            }
         }
     }
 }

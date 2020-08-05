@@ -26,4 +26,12 @@ public class GrowthContainer : MonoBehaviour
     //{
     //    DontDestroyOnLoad(this);
     //}
+
+    public static void Clear()
+    {
+        initiativeId = new string[12];
+        description = new string[12];
+        category = new string[12];
+        imageRaw = new Texture2D[12];
+    }
 }

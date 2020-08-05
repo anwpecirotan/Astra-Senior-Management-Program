@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     public string tagId;
+    public string id;
     public GameManager gameManager;
     public bool isMouseOver = false;
     public string descriptionString;

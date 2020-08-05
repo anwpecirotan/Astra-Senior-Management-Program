@@ -26,6 +26,8 @@ public class PnGRequest : MonoBehaviour
     {
         pReady = false;
         gReady = false;
+        GrowthContainer.Clear();
+        ProfitContainer.Clear();
     }
 
     private void Update()
