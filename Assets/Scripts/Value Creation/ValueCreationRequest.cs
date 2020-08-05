@@ -12,17 +12,16 @@ public class ValueCreationRequest : MonoBehaviour
     public TMP_InputField passwordField;
     public TMP_Dropdown templateListDropDown;
     public TextMeshProUGUI dropDownDefault;
+    public GameObject loadingPanel;
 
     public GameObject userErrorPanel, notPickPanel;
 
-    public GameObject TemplateCanvas , oldCanvas;
+    public GameObject TemplateCanvas;
     //public Button button;
 
     public containerValueCreation containerVC;
 
     public TextMeshProUGUI feedbackMessage;
-
-    public AudioSource loginSound;
 
     private readonly string baseWebURL = "http://dev.accelist.com:9192/";
 
@@ -42,8 +41,23 @@ public class ValueCreationRequest : MonoBehaviour
     {
         StartCoroutine(SignIn(userField.text, passwordField.text));
     }
+    public void _OnButtonViewPassword()
+    {
+        if (passwordField.contentType == TMP_InputField.ContentType.Password)
+        {
+            passwordField.contentType = TMP_InputField.ContentType.Standard;
+        }
+        else
+        {
+            passwordField.contentType = TMP_InputField.ContentType.Password;
+        }
+
+        passwordField.ActivateInputField();
+    }
     public IEnumerator SignIn(string username,string password)
     {
+        userErrorPanel.SetActive(false);
+        loadingPanel.SetActive(true);
         var user = new User
         {
             UserId = username,
@@ -66,8 +80,20 @@ public class ValueCreationRequest : MonoBehaviour
         
         if (request.isNetworkError || request.isHttpError)
         {
-            feedbackMessage.text = request.error;
-            userErrorPanel.SetActive(true);
+            loadingPanel.SetActive(false);
+           
+            Debug.Log(request.error);
+            if(request.error == "Failed to receive data")
+            {
+                feedbackMessage.text = request.error;
+                StartCoroutine(SignIn(userField.text, passwordField.text));
+            }
+            
+            else if(request.error == "HTTP/1.1 400 Bad Request")
+            {
+                userErrorPanel.SetActive(true);
+            }
+           
         }
         else
         {
@@ -89,7 +115,6 @@ public class ValueCreationRequest : MonoBehaviour
     public IEnumerator ShowAllTemplateList()
     {
         TemplateCanvas.SetActive(true);
-        oldCanvas.SetActive(false);
         string webURL = baseWebURL + "api/v3/game2/get-value-creation2";// + user_cont+"&password="+pass_cont;
         UnityWebRequest templateRequestList = UnityWebRequest.Get(webURL);
         templateRequestList.SetRequestHeader("Authorization", "Bearer " + token);
@@ -120,6 +145,7 @@ public class ValueCreationRequest : MonoBehaviour
         }
 
         feedbackMessage.text = "Data Request Done!";
+        loadingPanel.SetActive(false);
     }
 
     public void _OnButtonPickTemplate()
@@ -146,7 +172,6 @@ public class ValueCreationRequest : MonoBehaviour
         }
         else
         {
-            //loginSound.Play();
             string jsonRaw = templateRequestList.downloadHandler.text;
 
             jsonRaw = jsonRaw.Substring(1, jsonRaw.Length - 2);

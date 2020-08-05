@@ -23,7 +23,7 @@ public class ScoreHandler : MonoBehaviour
         currentScore = Score.A;
         scoreText.text = "A";
         scoreDescriptionText.text = "SELAMAT..!!! Anda berhasil meningkatkan nilai perusahaan dari "+ (int)CountStandard.BaseCumulativeNCF + ". menjaadi " +(int) BusinessValueAndShareholderValue.shareholderValueAdded +  ".";
-        if (ValueDrivers.OperatingProfitMargin > (BoundariesData.Realistic_OPM + 0.1f) || ValueDrivers.IncrementalFixedCapitalInvestment < BoundariesData.Realistic_Inc_FC || ValueDrivers.IncrementalWorkingCapitalInvestment < BoundariesData.Realistic_Inc_WC)
+        if (ValueDrivers.OperatingProfitMargin > (BoundariesData.Realistic_OPM + 0.001f) || ValueDrivers.IncrementalFixedCapitalInvestment < BoundariesData.Realistic_Inc_FC - 0.001f || ValueDrivers.IncrementalWorkingCapitalInvestment < BoundariesData.Realistic_Inc_WC - 0.001f)
         {
             currentScore = Score.C;
             scoreText.text = "C";

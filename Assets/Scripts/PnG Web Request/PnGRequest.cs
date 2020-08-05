@@ -13,6 +13,7 @@ public class PnGRequest : MonoBehaviour
     public TextMeshProUGUI feedbackMessage;
     public ProfitContainer pContainer;
     public GrowthContainer gContainer;
+    public GameObject loadingPanel;
 
     public GameObject userErrorPanel;
     private bool pReady, gReady;
@@ -32,6 +33,7 @@ public class PnGRequest : MonoBehaviour
         if(pReady && gReady)
         {
             button.LoadSceneNumber(1);
+            loadingPanel.SetActive(false);
         }
     }
 
@@ -44,8 +46,23 @@ public class PnGRequest : MonoBehaviour
     {
         StartCoroutine(SignIn(userField.text, passwordField.text));
     }
+    public void _OnButtonViewPassword()
+    {
+        if (passwordField.contentType == TMP_InputField.ContentType.Password)
+        {
+            passwordField.contentType = TMP_InputField.ContentType.Standard;
+        }
+        else
+        {
+            passwordField.contentType = TMP_InputField.ContentType.Password;
+        }
+
+        passwordField.ActivateInputField();
+    }
     public IEnumerator SignIn(string username, string password)
     {
+        userErrorPanel.SetActive(false);
+        loadingPanel.SetActive(true);
         var user = new User
         {
             UserId = username,
@@ -68,8 +85,19 @@ public class PnGRequest : MonoBehaviour
 
         if (request.isNetworkError || request.isHttpError)
         {
-            feedbackMessage.text = "Invalid Username or Password";
-            userErrorPanel.SetActive(true);
+            loadingPanel.SetActive(false);
+
+            Debug.Log(request.error);
+            if (request.error == "Failed to receive data")
+            {
+                feedbackMessage.text = request.error;
+                StartCoroutine(SignIn(userField.text, passwordField.text));
+            }
+
+            else if (request.error == "HTTP/1.1 400 Bad Request")
+            {
+                userErrorPanel.SetActive(true);
+            }
         }
         else
         {
