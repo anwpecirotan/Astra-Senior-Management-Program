@@ -194,6 +194,10 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
 
         Operations.Sales.BaseFigures = LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales;
         Operations.Sales.ForecastPeriodYear1 = Operations.Sales.BaseFigures * (1 + (ValueDrivers.SalesGrowthRate));
+        Operations.OperatingProfitMargin.BaseFigures = LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales * ValueDrivers.OperatingProfitMargin;
+        Operations.OperatingProfitMargin.ForecastPeriodYear1 = Operations.Sales.ForecastPeriodYear1 * ValueDrivers.OperatingProfitMargin;
+        Operations.Tax25Percent.ForecastPeriodYear1 = Operations.OperatingProfitMargin.ForecastPeriodYear1 * ValueDrivers.CashTaxRate;
+        Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 = Operations.OperatingProfitMargin.ForecastPeriodYear1 - Operations.Tax25Percent.ForecastPeriodYear1;
 
         AssignBaseText();
         AssignFirstValue();
