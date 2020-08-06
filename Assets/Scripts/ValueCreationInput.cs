@@ -22,6 +22,11 @@ public class ValueCreationInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ValueDrivers.SalesGrowthRate = 0;
+        ValueDrivers.OperatingProfitMargin = 0;
+        ValueDrivers.IncrementalFixedCapitalInvestment = 0;
+        ValueDrivers.IncrementalWorkingCapitalInvestment = 0;
+
         SalesGrowthRateSlider.value = (float)TemplateData.ValueDriver_SalesGrowthRate * 200;
         OperatingProfitMarginSlider.value = (float)TemplateData.ValueDriver_OperatingProfitMargin * 200;
         IncrementalFixedCapitalInvestmentSlider.value = (float)TemplateData.ValueDriver_IncrementalFixedCapitalInvestment * 200;

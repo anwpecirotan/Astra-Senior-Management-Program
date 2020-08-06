@@ -178,10 +178,28 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
     {
         BaseCumulativeNCF = 0;
         StandardCumulativeNCF = 0;
+
+        FirstSales = 0;
+        FirstTax = 0;
+        FirstNOPAT = 0;
+        FirstCIBalance = 0;
+        FirstCICashFlow = 0;
+        FirstNWCBalance = 0;
+        FirstNWCCashFlow = 0;
+        FirstContinueNOPAT = 0;
+        FirstPresentValueCashFlow = 0;
+        FirstPresentValue = 0;
+        FirstFreeCashFlow = 0;
+        FirstContinuingValue = 0;
+
+        Operations.Sales.BaseFigures = LiabilitiesandOwnersEquity.ProfitandLossStatement.Sales;
+        Operations.Sales.ForecastPeriodYear1 = Operations.Sales.BaseFigures * (1 + (ValueDrivers.SalesGrowthRate));
+
         AssignBaseText();
         AssignFirstValue();
         AssignPeriodForecast();
         //CountStandard();
+
     }
 
     void Update()
