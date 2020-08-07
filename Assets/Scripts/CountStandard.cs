@@ -179,6 +179,7 @@ public class CountStandard : MonoBehaviour
         BaseCumulativeNCF = 0;
         //StandardCumulativeNCF = 0;
         //AssignBaseText();
+        NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures = BoundariesData.WACC;
         AssignFirstValue();
         AssignPeriodForecast();
     }
