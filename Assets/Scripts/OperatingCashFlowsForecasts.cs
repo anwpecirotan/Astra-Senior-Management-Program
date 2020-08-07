@@ -199,6 +199,25 @@ public class OperatingCashFlowsForecasts : MonoBehaviour
         Operations.Tax25Percent.ForecastPeriodYear1 = Operations.OperatingProfitMargin.ForecastPeriodYear1 * ValueDrivers.CashTaxRate;
         Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 = Operations.OperatingProfitMargin.ForecastPeriodYear1 - Operations.Tax25Percent.ForecastPeriodYear1;
 
+        CapitalInvestments_FixedAssets.Balance.BaseFigures = KeyFigures.FixedAssets;
+        CapitalInvestments_FixedAssets.Balance.ForecastPeriodYear1 = Operations.Sales.ForecastPeriodYear1 * ValueDrivers.IncrementalFixedCapitalInvestment;
+        CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1 = CapitalInvestments_FixedAssets.Balance.BaseFigures - CapitalInvestments_FixedAssets.Balance.ForecastPeriodYear1;
+
+        NetWorkingCapitalInvestments.Balance.BaseFigures = KeyFigures.NWC;
+        NetWorkingCapitalInvestments.Balance.ForecastPeriodYear1 = Operations.Sales.ForecastPeriodYear1 * ValueDrivers.IncrementalWorkingCapitalInvestment;
+        NetWorkingCapitalInvestments.CashFlows.ForecastPeriodYear1 = NetWorkingCapitalInvestments.Balance.BaseFigures - NetWorkingCapitalInvestments.Balance.ForecastPeriodYear1;
+
+        NetCashFlows_FreeCashFlows.ForecastPeriodYear1 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1 +
+                                                         CapitalInvestments_FixedAssets.CashFlows.ForecastPeriodYear1 +
+                                                         NetWorkingCapitalInvestments.CashFlows.ForecastPeriodYear1;
+        NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures = BoundariesData.WACC;
+        NetCashFlows_FreeCashFlows.PresentValueFactor.ForecastPeriodYear1 = 1 / (1 + NetCashFlows_FreeCashFlows.PresentValueFactor.BaseFigures);
+        NetCashFlows_FreeCashFlows.PresentValueOfNetCashFlows.ForecastPeriodYear1 = NetCashFlows_FreeCashFlows.ForecastPeriodYear1 * NetCashFlows_FreeCashFlows.PresentValueFactor.ForecastPeriodYear1;
+        NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures = NetCashFlows_FreeCashFlows.PresentValueOfNetCashFlows.ForecastPeriodYear1;
+        NetCashFlows_FreeCashFlows.ContinuingValue.NetOperatingProfitAfterTax_NOPAT.ForecastPeriodYear1 = Operations.NetOperatingProfitAfterTAX_NOPAT.ForecastPeriodYear1;
+        NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures = BoundariesData.WACC;
+        NetCashFlows_FreeCashFlows.ContinuingValue.ForecastPeriodYear1 = NetCashFlows_FreeCashFlows.ContinuingValue.NetOperatingProfitAfterTax_NOPAT.ForecastPeriodYear1 / NetCashFlows_FreeCashFlows.ContinuingValue.BaseFigures;
+
         AssignBaseText();
         AssignFirstValue();
         AssignPeriodForecast();
