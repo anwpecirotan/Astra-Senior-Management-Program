@@ -25,6 +25,10 @@ public class T_TutorialGameInput : MonoBehaviour
         {
             idxShow++;
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void PrevTutorial()
