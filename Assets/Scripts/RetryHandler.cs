@@ -10,7 +10,7 @@ public class RetryHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("LoadSceneScore", 5f);
+       // Invoke("LoadSceneScore", 5f);
     }
 
     //public void RetryActive()
