@@ -1206,7 +1206,7 @@ GameObject:
   - component: {fileID: 456199639}
   - component: {fileID: 456199638}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Username+Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6120,10 +6120,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Username atau Password yang anda masukkan salah
+  m_text: Username atau Password yang Anda masukkan salah
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6c5371d3a4247a24f80b0f0dedb96b0f, type: 2}
-  m_sharedMaterial: {fileID: 5796070669163195464, guid: 6c5371d3a4247a24f80b0f0dedb96b0f,
+  m_fontAsset: {fileID: 11400000, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f, type: 2}
+  m_sharedMaterial: {fileID: -3006499234880735918, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -6149,8 +6149,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

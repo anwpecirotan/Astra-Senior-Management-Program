@@ -6,18 +6,61 @@ using TMPro;
 public class HintHandler : MonoBehaviour
 {
     public TextMeshProUGUI firstPageTop;
-    public TextMeshProUGUI firstPageBottom;
-    public TextMeshProUGUI secondPage;
-    public TextMeshProUGUI thirdPage;
-    public TextMeshProUGUI fourthPage;
+    public TextMeshProUGUI secara2, tarif3, roe4, igr5, sgr6,dengan7;
     // Start is called before the first frame update
     void Start()
     {
-        firstPageTop.text = "Berikut ini disajikan Neraca dan Penghasilan terbaru laporan sebuah perusahaan " +TemplateData.CompanyName +" di Indonesia";
-        firstPageBottom.text = "Secara historis, perusahaan telah mengalami pertumbuhan rata-rata " + TemplateData.ValueDriver_SalesGrowthRate * 100 + "% per tahun, margin laba operasionalnya rata-rata selama " + TemplateData.ValueDriver_PlanningPeriod_Years + " tahun terakhir adalah " + TemplateData.ValueDriver_OperatingProfitMargin * 100 + "%. ";
-        secondPage.text = "Tarif pajak tunai perusahaan adalah "+TemplateData.ValueDriver_CashTaxRate*100+"%, dan dengan struktur modal saat ini, biaya rata-rata modal tertimbang (WACC) adalah "+TemplateData.WACC_Baseline*100+"%.\nInvestasi dalam Modal Tetap dan Modal Kerja juga berdasarkan catatan sejarah masing-masing sebesar "+TemplateData.ValueDriver_IncrementalFixedCapitalInvestment*100+"% dan "+TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment*100+"% dari penjualan tambahan.";
-        thirdPage.text = "ROE perusahaan saat ini adalah "+ System.Math.Round(KeyFigures.ROE*100,2)+"% dan rasio utang terhadap ekuitas adalah "+ System.Math.Round(KeyFigures.debtOfEquityRatio*100, 2) + "%, yang relatif sehat.";
-        fourthPage.text = "IGR adalah gambaran dari kapasitas perusahaan untuk tumbuh dengan menggunakan dana internal (tidak ada pinjaman atau ekuitas tambahan). Berdasarkan angka terbaru, IGR perusahaan adalah "+ System.Math.Round(KeyFigures.IGR*100,2)+"%.";
+        firstPageTop.text = "Berikut ini disajikan Neraca dan Penghasilan terbaru laporan sebuah perusahaan "
+            +TemplateData.CompanyName +" di Indonesia";
+
+        secara2.text = "Secara historis, perusahaan telah mengalami pertumbuhan rata-rata "
+               + TemplateData.ValueDriver_SalesGrowthRate * 100 +
+               "% per tahun, Margin laba usaha rata-rata selama "
+               + TemplateData.ValueDriver_PlanningPeriod_Years + " tahun terakhir adalah "
+               + TemplateData.ValueDriver_OperatingProfitMargin * 100 + "%. "
+               + "Dibandingkan dengan industri, tingkat pertumbuhan perusahaan dan margin laba operasi " +
+               "sedikit di bawah rata-rata industri masing-masing" + " 10% dan 9%."; // Ini apaan woy
+
+        tarif3.text = "Tarif pajak tunai perusahaan adalah " +
+            TemplateData.ValueDriver_CashTaxRate * 100 + "%," +
+            " dan dengan struktur permodalan saat ini,biaya rata-rata tertimbang modal (WACC) perusahaan sebesar "
+            + TemplateData.WACC_Baseline * 100 + "%." +
+            "\nInvestasi dalam Modal Tetap dan Modal Kerja juga berdasarkan catatan sejarah masing-masing adalah "
+            + TemplateData.ValueDriver_IncrementalFixedCapitalInvestment * 100 + "% " +
+            "dan "
+            + TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment * 100 + "%" +
+            " dari penjualan tambahan.";
+
+        roe4.text = "ROE perusahaan saat ini adalah "
+            + System.Math.Round(KeyFigures.ROE * 100, 1) + "%" +
+            " dan rasio utang terhadap ekuitas sebesar "
+            + System.Math.Round(KeyFigures.debtOfEquityRatio * 100, 2) + "%" +
+            ", yang relatif sehat." +
+            "\nDPO merupakan kebijakan perusahaan tentang pembayaran dividen yang mencerminkan" +
+            " persentase laba tahun berjalan yang dibayarkan sebagai dividen yaitu " +
+            KeyFigures.DPO * 100 + "% " +
+            "dari Laba Bersih. Rasio laba ditahan adalah persentase laba bersih tahun berjalan yang ditahan di perusahaan.";
+
+        igr5.text = "IGR adalah cerminan dari kapasitas perusahaan untuk tumbuh dengan menggunakan dana internal" +
+            " (tidak ada pinjaman atau ekuitas tambahan)." +
+            " Berdasarkan angka terakhir IGR perusahaan sebesar " +
+            KeyFigures.IGR * 100 + "%";
+
+        sgr6.text = "SGR adalah tingkat pertumbuhan berkelanjutan perusahaan yaitu " +
+            System.Math.Round(KeyFigures.SGR * 100, 2) + "% " +
+            "Artinya, perusahaan dapat tumbuh hingga " +
+            TemplateData.WACC_Baseline * 100 + "%" +
+            " tanpa memengaruhi rasio utang terhadap ekuitas. Oleh karena itu," +
+            " manajemen merasa bahwa jika perusahaan tumbuh dalam SGR-nya, WACC " +
+            "(biaya modal rata-rata tertimbang) akan tetap sama. Manajemen memperkirakan dengan setiap kenaikan " +
+            BoundariesData.Factor_of_Sales_Growth * 100 + "%" +
+            " dari SGR-nya, WACC akan meningkat " +
+            TemplateData.Impact_on_WACC * 100 + "%";
+
+        dengan7.text = "Dengan pertimbangan bahwa salah satu tujuan utama perusahaan adalah untuk “memaksimalkan nilai pemegang saham”, " +
+            "maka manajemen harus memutuskan bagaimana melanjutkan strategi bisnisnya selama " +
+            TemplateData.ValueDriver_PlanningPeriod_Years +
+            " tahun ke depan, dengan memperhatikan key value driver yang disajikan.";
     }
 
     // Update is called once per frame

@@ -13,21 +13,24 @@ public class GameManager : MonoBehaviour
     public Text title;
     public TextMeshProUGUI description;
     public RawImage image;
+    public RawImage imageDup;
     public Card cardBack;
     public string titleBack, descriptionBack;
     public Texture2D imageBack;
     public GameObject check, cross, timeoutSprite;
     public GameObject MainText;
+    public GameObject timeFrame;
     public GameObject endPanel;
     public Text scoreText;
     public bool waiting;
     public static int score;
     public int nextSceneIndex;
-
+    public TextMeshProUGUI questionIdxShow;
+    public GameObject frameIdx;
     public TextMeshProUGUI timeText;
     private float time;
     private bool timeOn , isTimeOut;
-    public AudioSource trueSound, wrongSound;
+    public AudioSource trueSound, wrongSound,timeUp;
 
     public static GameManager instance = null;
 
@@ -51,16 +54,21 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nextSceneIndex = 1;
+        questionIdxShow.text = nextSceneIndex + "/20";
+        questionIdxShow.gameObject.SetActive(true);
         isTimeOut = false;
         timeOn = false;
         time = 15.2f;
         cardList = new List<Card>();
         waiting = false;
         AddCard();
+        
         //NextCard();
         //ShowCard();
         Invoke("NextCard", 0.2f);
         Invoke("ShowCard", 0.3f);
+        Invoke("DuplicateCard", 0.3f);
         score = 0;
         Time.timeScale = 1;
     }
@@ -89,30 +97,53 @@ public class GameManager : MonoBehaviour
             waiting = true;
             check.SetActive(true);
             MainText.SetActive(false);
+            timeFrame.SetActive(false);
+            questionIdxShow.gameObject.SetActive(false);
+            frameIdx.SetActive(false);
+            description.gameObject.SetActive(false);
+            timeText.gameObject.SetActive(false);
             Invoke("RemovedCheck", 2.1f);
             Debug.Log("true");
             score += 1;
+            nextSceneIndex++;
+            questionIdxShow.text = nextSceneIndex + "/20";
             Invoke("ShowCard", 2);
         }
     }
 
+    public void DuplicateCard()
+    {
+        imageDup.texture = image.texture;
+    }
     public void AnswerFalse()
     {
         if (!waiting)
         {
             timeOn = false;
             time = 15.2f;
-            wrongSound.Play();
+            
             waiting = true;
-            if (isTimeOut)
+            if (isTimeOut) {
+                timeUp.Play();
                 timeoutSprite.SetActive(true);
-            else
+            }
+            else{
+                wrongSound.Play();
                 cross.SetActive(true);
+            }
+            
             isTimeOut = false;
             MainText.SetActive(false);
+            timeFrame.SetActive(false);
+            questionIdxShow.gameObject.SetActive(false);
+            frameIdx.SetActive(false);
+            description.gameObject.SetActive(false);
+            timeText.gameObject.SetActive(false);
             Invoke("RemovedCross", 2.1f);
             Debug.Log("false");
             Invoke("ShowCard", 2);
+            nextSceneIndex++;
+            questionIdxShow.text = nextSceneIndex + "/20";
         }
     }
 
@@ -187,7 +218,12 @@ public class GameManager : MonoBehaviour
         timeOn = true;
         waiting = false;
         check.gameObject.SetActive(false);
+        timeFrame.SetActive(true);
+        questionIdxShow.gameObject.SetActive(true);
         MainText.SetActive(true);
+        frameIdx.SetActive(true);
+        description.gameObject.SetActive(true);
+        timeText.gameObject.SetActive(true);
     }
 
     private void RemovedCross()
@@ -195,8 +231,13 @@ public class GameManager : MonoBehaviour
         timeOn = true;
         waiting = false;
         cross.gameObject.SetActive(false);
+        timeFrame.SetActive(true);
+        questionIdxShow.gameObject.SetActive(true);
         timeoutSprite.gameObject.SetActive(false);
         MainText.SetActive(true);
+        frameIdx.SetActive(true);
+        description.gameObject.SetActive(true);
+        timeText.gameObject.SetActive(true);
     }
 
     private void EndGame()
@@ -204,7 +245,7 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0f;
         //endPanel.SetActive(true);
         //scoreText.text = scoreText.text + score;
-        SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadScene(3);
     }
 
     private void AddCard()

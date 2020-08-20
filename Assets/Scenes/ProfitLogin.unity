@@ -328,7 +328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Username atau Password yang anda masukkan salah
+  m_text: Username atau Password yang Anda masukkan salah
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6c5371d3a4247a24f80b0f0dedb96b0f, type: 2}
   m_sharedMaterial: {fileID: 5796070669163195464, guid: 6c5371d3a4247a24f80b0f0dedb96b0f,
@@ -3114,12 +3114,22 @@ PrefabInstance:
     - target: {fileID: 1787802298210545394, guid: dc7e189395179d547b663c19823dcf65,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.0495355
+      value: -1.0495358
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787802298210545394, guid: dc7e189395179d547b663c19823dcf65,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -19.957476
       objectReference: {fileID: 0}
     - target: {fileID: 1787802298338512014, guid: dc7e189395179d547b663c19823dcf65,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.0495355
+      value: -1.0495358
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787802298338512014, guid: dc7e189395179d547b663c19823dcf65,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -19.957476
       objectReference: {fileID: 0}
     - target: {fileID: 1787802298338512015, guid: dc7e189395179d547b663c19823dcf65,
         type: 3}

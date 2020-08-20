@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ValueCreationInput : MonoBehaviour
 {
     public Slider SalesGrowthRateSlider;
+    
+
     public Slider OperatingProfitMarginSlider;
     public Slider IncrementalFixedCapitalInvestmentSlider;
     public Slider IncrementalWorkingCapitalInvestmentSlider;
@@ -48,6 +51,8 @@ public class ValueCreationInput : MonoBehaviour
         TaxText.text = System.Math.Round(TaxSlider.value / 2, 1)  + " %";
         //Debug.Log(ValueDrivers.SalesGrowthRate);
     }
+
+  
 
     public void Submit()
     {

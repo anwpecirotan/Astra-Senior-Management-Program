@@ -9,7 +9,7 @@ public class ProfitRetryHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("RetryActive", 2f);
+        //Invoke("RetryActive", 2f);
     }
 
     public void RetryActive()

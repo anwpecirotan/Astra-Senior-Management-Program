@@ -17,7 +17,7 @@ public class BoundariesData : MonoBehaviour
     {
         double currentWACC = WACC_Baseline;
         double currentSalesGrowth = ValueDrivers.SalesGrowthRate - Ideal_Sales_Growth_Rate;
-        while(currentSalesGrowth >= Factor_of_Sales_Growth)
+        while(currentSalesGrowth >= Factor_of_Sales_Growth-0.001)
         {
             currentWACC += 0.01;
             currentSalesGrowth -= Factor_of_Sales_Growth;

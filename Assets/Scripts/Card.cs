@@ -13,10 +13,14 @@ public class Card : MonoBehaviour
     public Text title, description;
     public Texture2D image;
     private Animator anim;
+    public int idx;
+    //public Text idxHitung;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+       // idxHitung.text = "1/20";
+        idx = 1;
     }
 
     private void OnMouseOver()
@@ -41,6 +45,8 @@ public class Card : MonoBehaviour
             {
                 gameManager.AnswerFalse();
             }
+            idx++;
+          //  idxHitung.text = idx + "/20";
         }
         //anim.SetTrigger("Right");
     }
@@ -57,6 +63,8 @@ public class Card : MonoBehaviour
             {
                 gameManager.AnswerFalse();
             }
+            idx++;
+           // idxHitung.text = idx + "/20";
         }
         //anim.SetTrigger("Left");
     }

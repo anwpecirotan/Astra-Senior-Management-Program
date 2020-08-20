@@ -9,9 +9,8 @@ public class T_TutorialGameInput : MonoBehaviour
     public int idxShow;
     public TextMeshProUGUI percentageSliderValue;
     public Slider sliderValue;
-    public GameObject valueDriverGO;
-    public GameObject financialStatement;
-    public GameObject hint;
+    public GameObject[] tutorialImage;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +18,22 @@ public class T_TutorialGameInput : MonoBehaviour
         
     }
 
+    public void CloseTutorial()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void NextTutorial()
     {
         if (idxShow < 2)
         {
+            tutorialImage[idxShow].SetActive(false);
+            tutorialImage[idxShow + 1].SetActive(true);
             idxShow++;
         }
         else
         {
-            gameObject.SetActive(false);
+            CloseTutorial();
         }
     }
 
@@ -35,6 +41,8 @@ public class T_TutorialGameInput : MonoBehaviour
     {
         if(idxShow > 0)
         {
+            tutorialImage[idxShow].SetActive(false);
+            tutorialImage[idxShow - 1].SetActive(true);
             idxShow--;
         }
     }
@@ -43,28 +51,11 @@ public class T_TutorialGameInput : MonoBehaviour
     void Update()
     {
         if (idxShow == 0)
-        {
 
-            valueDriverGO.SetActive(true);
-            financialStatement.SetActive(false);
-            hint.SetActive(false);
-            percentageSliderValue.text = (sliderValue.value/2) + "%";
-
-        }
-
-        else if (idxShow == 1)
-        {
-            valueDriverGO.SetActive(false);
-            financialStatement.SetActive(true);
-            hint.SetActive(false);
-        }
-
-        else if (idxShow == 2)
-        {
-            valueDriverGO.SetActive(false);
-            financialStatement.SetActive(false);
-            hint.SetActive(true);
-        }
+            percentageSliderValue.text = (sliderValue.value / 2) + "%";
 
     }
+
+    
+
 }
