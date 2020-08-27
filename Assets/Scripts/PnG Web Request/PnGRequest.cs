@@ -18,7 +18,10 @@ public class PnGRequest : MonoBehaviour
     public GameObject userErrorPanel;
     private bool pReady, gReady;
     public Button button;
-    private readonly string baseWebURL = "http://dev.accelist.com:9192/";
+
+    // private readonly string baseWebURL = "http://dev.accelist.com:9192/";
+
+    private readonly string baseWebURL = "https://app-asrmp-admin-001.azurewebsites.net/";
 
     public string user_cont, pass_cont, token, employee_id, full_name;
 
@@ -160,7 +163,9 @@ public class PnGRequest : MonoBehaviour
                     else if (imageRequest.error == "HTTP/1.1 400 Bad Request")
                     {
                         userErrorPanel.SetActive(true);
+                        StartCoroutine(SignIn(userField.text, passwordField.text));
                     }
+                    
                     yield break;
                 }
                 ProfitContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);
@@ -201,6 +206,11 @@ public class PnGRequest : MonoBehaviour
                 if (imageRequest.isNetworkError || imageRequest.isHttpError)
                 {
                     Debug.LogError(imageRequest.error);
+                   if(imageRequest.error == "HTTP/1.1 404 Not Found")
+                    {
+                        feedbackMessage.text = imageRequest.error;
+                        StartCoroutine(SignIn(userField.text, passwordField.text));
+                    }
                     yield break;
                 }
                 GrowthContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);

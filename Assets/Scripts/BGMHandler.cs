@@ -9,14 +9,14 @@ public class BGMHandler : MonoBehaviour
     public GameObject moveCoor;
     public GameObject moveCoor2;
     bool move;
-    
+
     //public AudioSource audio;
 
     public static BGMHandler instance = null;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -32,9 +32,12 @@ public class BGMHandler : MonoBehaviour
         //imDouble = false;
     }
 
+
+
+
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().name == "ProfitLogin")
+        if (SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().name == "ProfitLogin")
         {
             Destroy(gameObject);
         }
@@ -44,6 +47,13 @@ public class BGMHandler : MonoBehaviour
             offBut.transform.position = new Vector2(moveCoor.transform.position.x, moveCoor.transform.position.y);
             move = true;
         }
+        if (SceneManager.GetActiveScene().name == "GameInput")
+        {
+            onBut.transform.position = new Vector2(moveCoor2.transform.position.x, moveCoor2.transform.position.y);
+            offBut.transform.position = new Vector2(moveCoor2.transform.position.x, moveCoor2.transform.position.y);
+
+        }
+
         if(SceneManager.GetActiveScene().name == "ProfitScore" && move)
         {
             onBut.transform.position = new Vector2(moveCoor2.transform.position.x, moveCoor2.transform.position.y);
