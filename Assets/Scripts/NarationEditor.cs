@@ -14,8 +14,21 @@ public class NarationEditor : MonoBehaviour
     private void Start()
     {
         StartupText();
+
+        print("Retained Earning Ratio : " + KeyFigures.retainEarningRatio);
+        print("ROE : " + KeyFigures.ROE);
+        print("Retained Earnings : " + LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings);
+        print("Total Assets : " + LiabilitiesandOwnersEquity.TotalAssets.totalAssets);
+        print("Net Profit Retained : " + LiabilitiesandOwnersEquity.ProfitandLossStatement.RE_RetainedEarnings);
+        print("EAT : " + LiabilitiesandOwnersEquity.ProfitandLossStatement.EAT_EarningsAfterTax);
+        print("Dividend : " + LiabilitiesandOwnersEquity.ProfitandLossStatement.Dividend);
+        print("DPO : " + KeyFigures.DPO);
     }
 
+    private void Update()
+    {
+        
+    }
     private void StartupText()
     {
         secara2.text = "Secara historis, perusahaan telah mengalami pertumbuhan rata-rata " 
@@ -30,7 +43,7 @@ public class NarationEditor : MonoBehaviour
             TemplateData.ValueDriver_CashTaxRate * 100 + "%," +
             " dan dengan struktur permodalan saat ini,biaya rata-rata tertimbang modal (WACC) perusahaan sebesar "
             + TemplateData.WACC_Baseline * 100 + "%." +
-            "\nInvestasi dalam Modal Tetap dan Modal Kerja juga berdasarkan catatan sejarah masing-masing adalah "
+            "Investasi dalam Modal Tetap dan Modal Kerja juga berdasarkan catatan sejarah masing-masing adalah "
             + TemplateData.ValueDriver_IncrementalFixedCapitalInvestment * 100 + "% " +
             "dan "
             + TemplateData.ValueDriver_IncrementalWorkingCapitalInvestment * 100 + "%" +
@@ -43,16 +56,17 @@ public class NarationEditor : MonoBehaviour
             ", yang relatif sehat."+
             "\nDPO merupakan kebijakan perusahaan tentang pembayaran dividen yang mencerminkan" +
             " persentase laba tahun berjalan yang dibayarkan sebagai dividen yaitu " +
-            KeyFigures.DPO * 100 + "% " +
+            (KeyFigures.DPO*100) + "% " +
             "dari Laba Bersih. Rasio laba ditahan adalah persentase laba bersih tahun berjalan yang ditahan di perusahaan.";
 
         igr5.text = "IGR adalah cerminan dari kapasitas perusahaan untuk tumbuh dengan menggunakan dana internal" +
             " (tidak ada pinjaman atau ekuitas tambahan)." +
             " Berdasarkan angka terakhir IGR perusahaan sebesar " +
-            KeyFigures.IGR * 100 + "%";
+           (KeyFigures.IGR * 100).ToString("F2")+ "%";
+           
 
         sgr6.text = "SGR adalah tingkat pertumbuhan berkelanjutan perusahaan yaitu " +
-            System.Math.Round(KeyFigures.SGR * 100,2) + "% "  +
+            (KeyFigures.SGR * 100).ToString("F1") + "% "  +
             "Artinya, perusahaan dapat tumbuh hingga " +
             TemplateData.WACC_Baseline * 100 + "%" +
             " tanpa memengaruhi rasio utang terhadap ekuitas. Oleh karena itu," +

@@ -514,6 +514,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &106775184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106775185}
+  m_Layer: 5
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &106775185
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106775184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1317226720}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -633, y: 330}
+  m_SizeDelta: {x: 68.7, y: 68.7}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &117286229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1143,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 216615791}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1744,7 +1779,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283710504
   m_fontColor: {r: 0.15686275, g: 0.23529413, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2419,7 +2454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.35951975, y: 0.06040493}
   m_AnchorMax: {x: 0.45632106, y: 0.23937184}
-  m_AnchoredPosition: {x: 0, y: -0.13394165}
+  m_AnchoredPosition: {x: 0, y: -0.13395691}
   m_SizeDelta: {x: 0.5891113, y: -1.2895203}
   m_Pivot: {x: 0.50000024, y: 0.5}
 --- !u!114 &823170780
@@ -2461,7 +2496,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 823170781}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2589,7 +2624,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1317226720}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3015,7 +3050,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283710504
   m_fontColor: {r: 0.15686275, g: 0.23529413, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3438,7 +3473,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283710504
   m_fontColor: {r: 0.15686275, g: 0.23529413, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3564,6 +3599,7 @@ MonoBehaviour:
   onBut: {fileID: 2070108340}
   offBut: {fileID: 843104696}
   moveCoor: {fileID: 1882799250}
+  moveCoor2: {fileID: 106775184}
 --- !u!114 &1317226717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3636,6 +3672,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1882799251}
+  - {fileID: 106775185}
   - {fileID: 843104697}
   - {fileID: 2070108345}
   m_Father: {fileID: 0}
@@ -3701,7 +3738,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Di sebelah sini ada tombol \nuntuk me-non aktifkan\nbackground music permainan.\n"
+  m_text: "Di sebelah sini ada tombol \nuntuk me-non aktifkan\nbackground\n music
+    permainan.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f, type: 2}
   m_sharedMaterial: {fileID: -3006499234880735918, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f,
@@ -3711,7 +3749,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283710504
   m_fontColor: {r: 0.15686275, g: 0.23529413, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3747,7 +3785,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 61
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3771,12 +3809,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1348834911}
-    characterCount: 78
+    characterCount: 79
     spriteCount: 0
-    spaceCount: 12
+    spaceCount: 13
     wordCount: 11
     linkCount: 0
-    lineCount: 3
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4544,7 +4582,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "atau jika Anda ingin kembali \nke halaman sebelumnya,\nAnda bisa menekan
-    tombol ini.\n"
+    \ntombol ini.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f, type: 2}
   m_sharedMaterial: {fileID: -3006499234880735918, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f,
@@ -4554,7 +4592,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283710504
   m_fontColor: {r: 0.15686275, g: 0.23529413, b: 0.32941177, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4590,7 +4628,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 72
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4614,12 +4652,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1497568307}
-    characterCount: 83
+    characterCount: 84
     spriteCount: 0
-    spaceCount: 14
+    spaceCount: 15
     wordCount: 13
     linkCount: 0
-    lineCount: 3
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4790,7 +4828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.58500004, y: 0.06040493}
   m_AnchorMax: {x: 0.68546414, y: 0.23937184}
-  m_AnchoredPosition: {x: 2.2381516, y: -0.13394165}
+  m_AnchoredPosition: {x: 2.2381516, y: -0.13395691}
   m_SizeDelta: {x: -2.4108887, y: -1.2895203}
   m_Pivot: {x: 0.50000024, y: 0.5}
 --- !u!114 &1671172830
@@ -6133,7 +6171,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1317226720}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6195,7 +6233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hi.. selamat datang..\nsebelum memulai \nsaya akan menjelaskan beberapa
+  m_text: "Hi.. selamat datang..\nsebelum memulai \nsaya akan menjelaskan\n beberapa
     hal"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c4dbd11cbc9bf14fae3d93eb1f1132f, type: 2}
@@ -6242,7 +6280,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 61
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6266,12 +6304,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2132562165}
-    characterCount: 73
+    characterCount: 74
     spriteCount: 0
-    spaceCount: 10
+    spaceCount: 11
     wordCount: 10
     linkCount: 0
-    lineCount: 3
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

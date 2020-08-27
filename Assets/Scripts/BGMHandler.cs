@@ -7,7 +7,9 @@ public class BGMHandler : MonoBehaviour
 {
     public GameObject onBut, offBut;
     public GameObject moveCoor;
+    public GameObject moveCoor2;
     bool move;
+    
     //public AudioSource audio;
 
     public static BGMHandler instance = null;
@@ -27,6 +29,7 @@ public class BGMHandler : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        //imDouble = false;
     }
 
     private void Update()
@@ -41,6 +44,17 @@ public class BGMHandler : MonoBehaviour
             offBut.transform.position = new Vector2(moveCoor.transform.position.x, moveCoor.transform.position.y);
             move = true;
         }
+        if(SceneManager.GetActiveScene().name == "ProfitScore" && move)
+        {
+            onBut.transform.position = new Vector2(moveCoor2.transform.position.x, moveCoor2.transform.position.y);
+            offBut.transform.position = new Vector2(moveCoor2.transform.position.x, moveCoor2.transform.position.y);
+            move = false;
+           
+        }
+
+       
+
+        
        
 
     }

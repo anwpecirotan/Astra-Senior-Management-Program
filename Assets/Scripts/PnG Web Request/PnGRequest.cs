@@ -90,7 +90,7 @@ public class PnGRequest : MonoBehaviour
             loadingPanel.SetActive(false);
 
             Debug.Log(request.error);
-            if (request.error == "Failed to receive data")
+            if (request.error == "Failed to receive data" || request.error == "HTTP/1.1 404 Not Found")
             {
                 feedbackMessage.text = request.error;
                 StartCoroutine(SignIn(userField.text, passwordField.text));
@@ -100,6 +100,8 @@ public class PnGRequest : MonoBehaviour
             {
                 userErrorPanel.SetActive(true);
             }
+
+            
         }
         else
         {
@@ -149,6 +151,16 @@ public class PnGRequest : MonoBehaviour
                 if (imageRequest.isNetworkError || imageRequest.isHttpError)
                 {
                     Debug.LogError(imageRequest.error);
+                    if (imageRequest.error == "Failed to receive data" || imageRequest.error == "HTTP/1.1 404 Not Found")
+                    {
+                        feedbackMessage.text = imageRequest.error;
+                        StartCoroutine(SignIn(userField.text, passwordField.text));
+                    }
+
+                    else if (imageRequest.error == "HTTP/1.1 400 Bad Request")
+                    {
+                        userErrorPanel.SetActive(true);
+                    }
                     yield break;
                 }
                 ProfitContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);
