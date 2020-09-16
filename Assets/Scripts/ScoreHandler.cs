@@ -62,7 +62,7 @@ public class ScoreHandler : MonoBehaviour
         {
             currentScore = Score.B;
             scoreText.text = "B";
-            scoreDescriptionText.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjaadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
+            scoreDescriptionText.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
             imgA.SetActive(false);
             imgB.SetActive(true);
         }

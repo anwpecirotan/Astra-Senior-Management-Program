@@ -164,6 +164,12 @@ public class GameManager : MonoBehaviour
             Destroy(card.gameObject);
             EndGame();
         }
+
+        if(nextSceneIndex >= 21)
+        {
+            Destroy(card.gameObject);
+            EndGame();
+        }
     }
 
     public void NextCard()

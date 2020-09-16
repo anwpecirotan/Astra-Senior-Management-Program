@@ -156,20 +156,28 @@ public class PnGRequest : MonoBehaviour
                     Debug.LogError(imageRequest.error);
                     if (imageRequest.error == "Failed to receive data" || imageRequest.error == "HTTP/1.1 404 Not Found")
                     {
+                        print("Error Image :" + ProfitContainer.description[j]);
+                        print(baseWebURL + "images / " + profitNameList[i]["imagePath"]);
                         feedbackMessage.text = imageRequest.error;
-                        StartCoroutine(SignIn(userField.text, passwordField.text));
+                        ProfitContainer.imageRaw[j] = null;
+                        // StartCoroutine(SignIn(userField.text, passwordField.text));
                     }
 
                     else if (imageRequest.error == "HTTP/1.1 400 Bad Request")
                     {
                         userErrorPanel.SetActive(true);
-                        StartCoroutine(SignIn(userField.text, passwordField.text));
+
+                        //  StartCoroutine(SignIn(userField.text, passwordField.text));
                     }
-                    
-                    yield break;
+
+                    // yield break;
                 }
-                ProfitContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);
-                print(ProfitContainer.description[j] + " Added!");
+                else
+                {
+                    ProfitContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);
+                    print(ProfitContainer.description[j] + " Added!");
+                    print(baseWebURL + "images/" + profitNameList[i]["imagePath"]);
+                }
             }
             feedbackMessage.text = "loaded";
             pReady = true;
@@ -206,15 +214,26 @@ public class PnGRequest : MonoBehaviour
                 if (imageRequest.isNetworkError || imageRequest.isHttpError)
                 {
                     Debug.LogError(imageRequest.error);
-                   if(imageRequest.error == "HTTP/1.1 404 Not Found")
+                    if (imageRequest.error == "Failed to receive data" || imageRequest.error == "HTTP/1.1 404 Not Found")
                     {
+                        print("Error Image :" + GrowthContainer.description[j]);
+                        print(baseWebURL + "images / " + growthNameList[i]["imagePath"]);
                         feedbackMessage.text = imageRequest.error;
-                        StartCoroutine(SignIn(userField.text, passwordField.text));
+                        GrowthContainer.imageRaw[j] = null;
+                        // StartCoroutine(SignIn(userField.text, passwordField.text));
                     }
-                    yield break;
+                    else if (imageRequest.error == "HTTP/1.1 400 Bad Request")
+                    {
+                        userErrorPanel.SetActive(true);
+                        // StartCoroutine(SignIn(userField.text, passwordField.text));
+                    }
+                    //  yield break;
                 }
-                GrowthContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);
-                print(GrowthContainer.description[j] + " Added!");
+                else
+                {
+                    GrowthContainer.imageRaw[j] = DownloadHandlerTexture.GetContent(imageRequest);
+                    print(GrowthContainer.description[j] + " Added!");
+                }
             }
             feedbackMessage.text = "loaded";
             gReady = true;

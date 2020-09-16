@@ -24,7 +24,7 @@ public class HintHandler : MonoBehaviour
 
         tarif3.text = "Tarif pajak tunai perusahaan adalah " +
             TemplateData.ValueDriver_CashTaxRate * 100 + "%," +
-            " dan dengan stru-ktur permodalan saat ini,biaya rata-rata tertimbang modal (WACC) perusahaan sebesar "
+            " dan dengan struktur permodalan saat ini,biaya rata-rata tertimbang modal (WACC) perusahaan sebesar "
             + TemplateData.WACC_Baseline * 100 + "%." +
             "\n\nInvestasi dalam Modal Tetap dan Modal Kerja juga ber-dasarkan catatan sejarah masing-masing adalah "
             + TemplateData.ValueDriver_IncrementalFixedCapitalInvestment * 100 + "% " +
