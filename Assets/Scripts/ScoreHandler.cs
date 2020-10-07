@@ -79,10 +79,20 @@ public class ScoreHandler : MonoBehaviour
         {
             if (BusinessValueAndShareholderValue.shareholderValueAdded > (int)CountStandard.BaseCumulativeNCF)
             {
-                scoreDescriptionText.text = "SELAMAT..!!! Anda berhasil meningkatkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
+                nonRealistic.text = "SELAMAT..!!! Anda berhasil meningkatkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
             }
-            else if (ValueDrivers.OperatingProfitMargin > (BoundariesData.Realistic_OPM + 0.001f) || ValueDrivers.IncrementalFixedCapitalInvestment < BoundariesData.Realistic_Inc_FC - 0.001f || ValueDrivers.IncrementalWorkingCapitalInvestment < BoundariesData.Realistic_Inc_WC - 0.001f || OperatingCashFlowsForecasts.NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures < 0)
+            if (BusinessValueAndShareholderValue.shareholderValueAdded < (int)CountStandard.BaseCumulativeNCF)
             {
+                nonRealistic.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
+
+            }
+            if ((int)BusinessValueAndShareholderValue.shareholderValueAdded == (int)CountStandard.BaseCumulativeNCF)
+            {
+                nonRealistic.text = "Sayang sekali, tidak ada perubahan dari inisiatif yang Anda buat";
+            }
+            if (ValueDrivers.OperatingProfitMargin > (BoundariesData.Realistic_OPM + 0.001f) || ValueDrivers.IncrementalFixedCapitalInvestment < BoundariesData.Realistic_Inc_FC - 0.001f || ValueDrivers.IncrementalWorkingCapitalInvestment < BoundariesData.Realistic_Inc_WC - 0.001f || OperatingCashFlowsForecasts.NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures < 0)
+            {
+                nonRealistic.text = "";
                 if (salesR || opmR || fixR || capR)
                 {
                     underLineRealistic.gameObject.SetActive(true);
@@ -105,15 +115,6 @@ public class ScoreHandler : MonoBehaviour
                 {
                     nonRealistic.text += "- Incremental Working Capital dibawah batas wajar\n";
                 }
-            }
-            else if (BusinessValueAndShareholderValue.shareholderValueAdded < (int)CountStandard.BaseCumulativeNCF)
-            {
-                nonRealistic.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
-                
-            }
-            else if ((int)BusinessValueAndShareholderValue.shareholderValueAdded == (int)CountStandard.BaseCumulativeNCF)
-            {
-                nonRealistic.text = "Sayang sekali, tidak ada perubahan dari inisiatif yang Anda buat";
             }
         }
     }
