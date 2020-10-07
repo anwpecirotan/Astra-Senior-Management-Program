@@ -77,28 +77,43 @@ public class ScoreHandler : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "ScoringSS")
         {
-            
-            if (salesR || opmR || fixR || capR)
+            if (BusinessValueAndShareholderValue.shareholderValueAdded > (int)CountStandard.BaseCumulativeNCF)
             {
-                underLineRealistic.gameObject.SetActive(true);
+                scoreDescriptionText.text = "SELAMAT..!!! Anda berhasil meningkatkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
             }
-            if (salesR)
+            else if (ValueDrivers.OperatingProfitMargin > (BoundariesData.Realistic_OPM + 0.001f) || ValueDrivers.IncrementalFixedCapitalInvestment < BoundariesData.Realistic_Inc_FC - 0.001f || ValueDrivers.IncrementalWorkingCapitalInvestment < BoundariesData.Realistic_Inc_WC - 0.001f || OperatingCashFlowsForecasts.NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures < 0)
             {
-                nonRealistic.text += "- Cummulative PV of Net Cash Flows mencapai " + OperatingCashFlowsForecasts.NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures.ToString("F2") +"\n";
-            }
-            if (opmR)
-            {
-                nonRealistic.text += "- Operating Profit Margin melebihi batas wajar\n";
-            }
+                if (salesR || opmR || fixR || capR)
+                {
+                    underLineRealistic.gameObject.SetActive(true);
+                }
+                if (salesR)
+                {
+                    nonRealistic.text += "- Cummulative PV of Net Cash Flows mencapai " + OperatingCashFlowsForecasts.NetCashFlows_FreeCashFlows.CummulativePresentValueNCF.BaseFigures.ToString("F2") + "\n";
+                }
+                if (opmR)
+                {
+                    nonRealistic.text += "- Operating Profit Margin melebihi batas wajar\n";
+                }
 
-            if (fixR)
-            {
-                nonRealistic.text += "- Incremental Fixed Capital dibawah batas wajar\n";
-            }
+                if (fixR)
+                {
+                    nonRealistic.text += "- Incremental Fixed Capital dibawah batas wajar\n";
+                }
 
-            if (capR)
+                if (capR)
+                {
+                    nonRealistic.text += "- Incremental Working Capital dibawah batas wajar\n";
+                }
+            }
+            else if (BusinessValueAndShareholderValue.shareholderValueAdded < (int)CountStandard.BaseCumulativeNCF)
             {
-                nonRealistic.text += "- Incremental Working Capital dibawah batas wajar\n";
+                nonRealistic.text = "Sayang sekali, inisiatif Anda menurunkan nilai perusahaan dari " + (int)CountStandard.BaseCumulativeNCF + ". menjadi " + (int)BusinessValueAndShareholderValue.shareholderValueAdded + ".";
+                
+            }
+            else if ((int)BusinessValueAndShareholderValue.shareholderValueAdded == (int)CountStandard.BaseCumulativeNCF)
+            {
+                nonRealistic.text = "Sayang sekali, tidak ada perubahan dari inisiatif yang Anda buat";
             }
         }
     }
